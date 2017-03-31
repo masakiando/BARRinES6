@@ -11,11 +11,16 @@ const CourseList = ({courses}) => {
         <th>Author</th>
         <th>Category</th>
         <th>Length</th>
+        <th>管理</th>
       </tr>
       </thead>
       <tbody>
       {courses.map(course =>
-        <CourseListRow key={course.id} course={course}/>
+        <CourseListRow
+          key={course.id}
+          course={course}
+          handleDelete={this.deleteBook}
+        />
       )}
       </tbody>
     </table>

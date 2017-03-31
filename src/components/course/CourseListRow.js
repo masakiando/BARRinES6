@@ -2,13 +2,25 @@ import React, {PropTypes} from 'react';
 import {Link} from 'react-router';
 
 const CourseListRow = ({course}) => {
+  const handleClick = (event) => {
+    event.preventDefault();
+    handleDelete(course.id);
+  };
   return (
     <tr>
       <td><a href={course.watchHref} target="_blank">Watch</a></td>
-      <td><Link to={'/course/' + course.id}>{course.title}</Link></td>
+      <td><Link to={'/course/' + course.id}>{course.title}</Link>
+      </td>
       <td>{course.authorId}</td>
       <td>{course.category}</td>
       <td>{course.length}</td>
+      // <td>
+      //   <Link to={'/course/' + course.id}>delete</Link>
+      // </td>
+      <a href="#"
+         className="delete"
+         onClick={handleClick}>delete
+       </a>
     </tr>
   );
 };

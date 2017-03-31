@@ -31,8 +31,9 @@ export class ManageCoursePage extends React.Component {
       this.setState({course: Object.assign({}, nextProps.course)});
     }
   }
-
+//
   updateCourseState(event) {
+    debugger;
     const field = event.target.name;
     let course = this.state.course;
     course[field] = event.target.value;
@@ -54,7 +55,7 @@ export class ManageCoursePage extends React.Component {
       formIsValid = false;
     }
     this.setState({errors: errors});
-    return formIsValid;
+    return formIsValid; // 初期値true, errors なら falseを返す
   }
 
 
@@ -62,7 +63,7 @@ export class ManageCoursePage extends React.Component {
     debugger;
     event.preventDefault();
 
-    if(!this.CourseFormIsValid()) {
+    if(!this.CourseFormIsValid()) { //falseなら処理終了
       return;
     }
 
