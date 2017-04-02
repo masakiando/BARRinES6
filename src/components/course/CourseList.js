@@ -1,7 +1,8 @@
 import React, {PropTypes} from 'react';
 import CourseListRow from './CourseListRow';
 
-const CourseList = ({courses}) => {
+const CourseList = ({
+  courses, onDelete, saving}) => {
   return (
     <table className="table">
       <thead>
@@ -19,7 +20,8 @@ const CourseList = ({courses}) => {
         <CourseListRow
           key={course.id}
           course={course}
-          handleDelete={this.deleteBook}
+          onDelete={onDelete}
+          saving={saving}
         />
       )}
       </tbody>
@@ -28,7 +30,9 @@ const CourseList = ({courses}) => {
 };
 
 CourseList.propTypes = {
-  courses: PropTypes.array.isRequired
+  courses: PropTypes.array.isRequired,
+  onDelete: React.PropTypes.func.isRequired,
+  saving: React.PropTypes.bool
 };
 
 export default CourseList;

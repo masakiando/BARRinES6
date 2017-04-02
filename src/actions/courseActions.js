@@ -40,3 +40,20 @@ export function saveCourse(course) {
     });
   };
 }
+
+export function deleteCourse(courseId) {
+  debugger;
+  return function (dispatch, getState) {
+    dispatch(beginAjaxCall());
+    return courseApi.deleteCourse(courseId).then(courses => {
+      dispatch(deleteCourseSuccess(courses));
+    }).catch(error => {
+      throw(error);
+    });
+  };
+}
+
+export function deleteCourseSuccess(courses) {
+  debugger;
+  return {type: types.DELETE_COURSE_SUCCESS, courses};
+}

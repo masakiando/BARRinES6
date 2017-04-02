@@ -69,17 +69,16 @@ export class ManageCoursePage extends React.Component {
 
     this.setState({saving: true});
     this.props.actions.saveCourse(this.state.course)
-      .then(() => this.redirect())
-      .catch(error => {
-        toastr.error(error);
-        this.setState({saving: false});
-      });
+      .then(() => this.redirect()).catch(error => {
+      toastr.error(error);
+      this.setState({saving: false});
+    });
   }
 
   redirect() {
     debugger;
     this.setState({saving: false});
-    toastr.success('Sourse saved');
+    toastr.success('Course saved');
     this.context.router.push('/courses');
   }
   render() {

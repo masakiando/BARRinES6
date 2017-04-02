@@ -1,10 +1,12 @@
 import React, {PropTypes} from 'react';
 import {Link} from 'react-router';
 
-const CourseListRow = ({course}) => {
-  const handleClick = (event) => {
+const CourseListRow = ({
+  course, onDelete, saving}) => {
+    const handleClick = (event) => {
+    debugger;
     event.preventDefault();
-    handleDelete(course.id);
+    onDelete(course.id);
   };
   return (
     <tr>
@@ -14,19 +16,22 @@ const CourseListRow = ({course}) => {
       <td>{course.authorId}</td>
       <td>{course.category}</td>
       <td>{course.length}</td>
-      // <td>
-      //   <Link to={'/course/' + course.id}>delete</Link>
-      // </td>
-      <a href="#"
-         className="delete"
-         onClick={handleClick}>delete
-       </a>
+      <td>
+        <input
+          type="submit"
+          disabled={saving}
+          value={saving ? '削除中' : '削除'}
+          className="btn btn-primary btn-xs "
+          onClick={handleClick}/>
+      </td>
     </tr>
   );
 };
 
 CourseListRow.propTypes = {
-  course: PropTypes.object.isRequired
+  course: PropTypes.object.isRequired,
+  onDelete: React.PropTypes.func.isRequired,
+  saving: React.PropTypes.bool
 };
 
 export default CourseListRow;

@@ -6,33 +6,57 @@ import {bindActionCreators} from 'redux';
 import * as courseActions from '../../actions/courseActions';
 import CourseList from './CourseList';
 import {browserHistory} from 'react-router';
+import toastr from 'toastr';
 
 class CoursesPage extends React.Component {
   constructor(props, context) {
     super(props, context);
+
+ this.state = {
+      errors: {},
+      saving: false
+    };
     this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
-  }
+    this.deleteCourse = this.deleteCourse.bind(this);
+  } //.
 
   courseRow(course, index) {
     return <div key={index}>{course.title}</div>;
-  }
+  } //.
 
   redirectToAddCoursePage() {
     browserHistory.push('/course');
+  } //.
+
+  deleteCourse(courseId) {
+    debugger;
+    this.setState({saving: true});
+    this.props.actions.deleteCourse(courseId)
+    .then(() => this.redirect());
+  } //. ※ bindを忘れない!
+
+  redirect() {
+    debugger;
+    this.setState({saving: false});
+    toastr.success('Course deleted');
   }
 
   render() {
+    debugger;
     const {courses} = this.props;
 
-    debugger;
     return (
       <div>
         <h1>Courses</h1>
-          <input type="submit"
-                 value="Add Course"
-                 className="btn btn-primary"
-                 onClick={this.redirectToAddCoursePage}/>
-        <CourseList courses={courses} />
+          <input
+            type="submit"
+            value="Add Course"
+            className="btn btn-primary"
+            onClick={this.redirectToAddCoursePage}/>
+          <CourseList
+            courses={courses}
+            onDelete={this.deleteCourse}
+            saving={this.state.saving} />
       </div>
     );
   }
