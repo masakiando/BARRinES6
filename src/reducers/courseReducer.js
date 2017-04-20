@@ -18,7 +18,7 @@ export default function courseReducer(
       ];
 
     //returnの第一引数で現在の...stateから、
-    //今回UPDATEするもの以外のcourseをfilterして取得する。そして全く新しい配列を作る。
+    //UPDATEするcourse以外のcoursesをfilterして取得する。そして全く新しい配列を作る。
     //そして、Object.assignを使用して渡されたコースのコピーを作成し、最終的に戻す配列にaction.courseを含めます。
     //  スプレッド演算子、マップ、フィルタ、およびObject.assignを使用して処理を行うことがよくあります。 これらの4つのツールを理解すると、状態を変えることなく本当に強力なタスクを達成できます。
     case types.UPDATE_COURSE_SUCCESS:

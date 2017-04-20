@@ -2,8 +2,8 @@ import webpack from 'webpack';
 import path from 'path';
 
 export default {
-  debug: true,//インフォメーション
-  devtool: 'inline-source-map',
+  debug: true,//debugインフォメーション生成
+  devtool: 'inline-source-map', //devtoolの種類設定
   noInfo: false,//コンソールログ情報設定
   entry: [//エキスポート
     'eventsource-polyfill', // necessary for hot reloading with IE //IEでのホットリロードに必要
@@ -25,7 +25,10 @@ export default {
   ],
   module: {
     loaders: [
-      {test: /\.js$/, include: path.join(__dirname, 'src'), loaders: ['babel']},
+      {test: /\.js$/, include: [
+        path.join(__dirname, 'src'),
+        path.join(__dirname, 'tools/shared')
+      ],loaders: ['babel']},
       {test: /(\.css)$/, loaders: ['style', 'css']},
       {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
       {test: /\.(woff|woff2)$/, loader: 'url?prefix=font/&limit=5000'},

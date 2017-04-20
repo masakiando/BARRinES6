@@ -2,11 +2,16 @@
 import React, {PropTypes} from 'react';
 import Header from './common/Header';
 import {connect} from 'react-redux';
+import { Link } from 'react-router';
+import FlashMessagesList from './flash/FlashMessagesList';
 
 class App extends React.Component {
   render() {
+    debugger;
     return (
       <div className="container-fluid">
+        <FlashMessagesList />
+        <Link to="/signup" className="box-link navbar-right" activeClassName="active">SignUp</Link>
         <Header
           loading={this.props.loading}
         />

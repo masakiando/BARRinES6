@@ -3,11 +3,11 @@ import TextInput from '../common/TextInput';
 import SelectInput from '../common/SelectInput';
 
 const CourseForm = ({
-  course, 
-  allAuthors, 
-  onSave, 
-  onChange, 
-  saving, 
+  course,
+  allAuthors,
+  onSave,
+  onChange,
+  saving,
   errors
 }) => {
   return (
@@ -27,7 +27,8 @@ const CourseForm = ({
         value={course.authorId}
         defaultOption="Select Author"
         options={allAuthors}
-        onChange={onChange} error={errors.authorId}/>
+        onChange={onChange}
+        error={errors.authorId}/>
 
       <TextInput
         name="category"

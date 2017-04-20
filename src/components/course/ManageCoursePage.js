@@ -93,7 +93,6 @@ export class ManageCoursePage extends React.Component {
       />
     );
   }
-
 }
 // this.props.course authors actionsの検証
 ManageCoursePage.propTypes = {
@@ -126,7 +125,14 @@ function mapStateToProps(state, ownProps) {
   // ownPropsはObjectを多数持っていてその中のparams:Objectを使用する
   const courseId = ownProps.params.id; // from the path `/course/:id`
 
-  let course = {id: '', watchHref: '', title: '', authorId: '', length: '', category: ''};
+  let course = {
+                id: '',
+                watchHref: '',
+                title: '',
+                authorId: '',
+                length: '',
+                category: ''
+              };
   // return { course: course,が処理されてcourseがこのcomponentのstateになってから
   // この式が成立するようにstate.courses.length > 0をする。
   if (courseId && state.courses.length > 0) {
