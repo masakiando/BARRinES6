@@ -2,8 +2,8 @@ import React, {PropTypes} from 'react';
 import timezones from '../../data/timezones';
 import map from 'lodash/map';
 import classnames from 'classnames';
-import validateInput from '../../../tools/shared/validations/signup';
-import SignupTextInput from '../common/SignupTextInput';
+import commonValidations from '../../../tools/shared/validations/signupValidator';
+import TextFieldGroup from '../common/TextFieldGroup';
 import toastr from 'toastr';
 // import {browserHistory} from 'react-router';
 
@@ -32,7 +32,7 @@ class SignupForm extends React.Component {
   //cliant Side validate
   SignupFormIsValid() {
     let formIsValid = true;
-    const { errors, isValid } = validateInput(this.state);
+    const { errors, isValid } = commonValidations(this.state);
 
     if (!isValid) {
       this.setState({ errors: errors });
@@ -41,12 +41,12 @@ class SignupForm extends React.Component {
     return formIsValid;
   }
 
+  // 一意生validations onBlur
   checkUserExists(event) {
     debugger;
     const field = event.target.name;
     const val = event.target.value;
     if (val !== '') {
-      // action dispatch使う、この時propTypes追加する
       this.props.isUserExists(val).then(res => {
         let errors = this.state.errors;
         let inValid = this.state.inValid;
@@ -77,8 +77,8 @@ class SignupForm extends React.Component {
     //Server Side userSignupRequest start
     this.setState({ errors: {}, isLoading: true });
     this.props.userSignupRequest(this.state)
-      .then(() => this.redirect()).catch(error => {
-        this.setState({
+      .then(() => this.redirect())
+      .catch( error => { this.setState({
           errors: error.response.data,
           isLoading: false
         });
@@ -102,7 +102,7 @@ class SignupForm extends React.Component {
     return (
       <form onSubmit={this.onSubmit}>
         <h1>Join our community!</h1>
-        <SignupTextInput
+        <TextFieldGroup
           error={errors.username}
           label="Username"
           onChange={this.onChange}
@@ -111,7 +111,7 @@ class SignupForm extends React.Component {
           name="username"
         />
 
-        <SignupTextInput
+      <TextFieldGroup
           error={errors.email}
           label="Email"
           onChange={this.onChange}
@@ -120,7 +120,7 @@ class SignupForm extends React.Component {
           name="email"
         />
 
-        <SignupTextInput
+      <TextFieldGroup
           error={errors.password}
           label="Password"
           onChange={this.onChange}
@@ -129,7 +129,7 @@ class SignupForm extends React.Component {
           type="password"
         />
 
-        <SignupTextInput
+      <TextFieldGroup
           error={errors.passwordConfirmation}
           label="Password Confirmation"
           onChange={this.onChange}

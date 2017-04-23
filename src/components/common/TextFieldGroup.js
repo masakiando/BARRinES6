@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import classnames from 'classnames';
 
-const SignupTextInput = ({
+const TextFieldGroup = ({
   name,
   value,
   label,
@@ -27,7 +27,7 @@ const SignupTextInput = ({
   );
 };
 
-SignupTextInput.propTypes = {
+TextFieldGroup.propTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.string,
   label: PropTypes.string.isRequired,
@@ -37,8 +37,8 @@ SignupTextInput.propTypes = {
   checkUserExists: PropTypes.func
 };
 
-SignupTextInput.defaultProps = {
+TextFieldGroup.defaultProps = {
   type: 'text'
 };
 
-export default SignupTextInput;
+export default TextFieldGroup;

@@ -3,9 +3,11 @@ import webpack from 'webpack';
 import path from 'path';
 import config from '../webpack.config.dev';
 import open from 'open';
+import colors from 'colors';
 
 
 import users from './routes/usersServer';
+import authentication from './routes/acthServer';
 import bodyParser from 'body-parser';
 
 /* eslint-disable no-console */
@@ -14,8 +16,12 @@ const port = 3000;
 const app = express();
 const compiler = webpack(config);
 
+console.log('starting srcServer...'.white);
+
 app.use(bodyParser.json());
+
 app.use('/api/users', users);
+app.use('/api/authentication', authentication); //expressでserverg立ち上げ
 
 //指定されたマウントミドルウェア指定されたパスに関数や機能を：要求されたパスのベースが一致したときに、ミドルウェア機能が実行されますpath。
 app.use(require('webpack-dev-middleware')(compiler, {

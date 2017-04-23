@@ -12,6 +12,7 @@ class App extends React.Component {
       <div className="container-fluid">
         <FlashMessagesList />
         <Link to="/signup" className="box-link navbar-right" activeClassName="active">SignUp</Link>
+        <Link to="/login" className="box-link navbar-right" activeClassName="active">Login</Link>
         <Header
           loading={this.props.loading}
         />

@@ -1,15 +1,16 @@
 import express from 'express';
+import colors from 'colors';
 import delay from '../../src/api/delay';
 // It uses setTimeout to simulate the delay of an AJAX call.
 // import validateInput from '../shared/validations/signup';
-import commonValidations from '../shared/validations/signup';
+import commonValidations from '../shared/validations/signupValidator';
 import bcrypt from 'bcrypt';
 import User from '../models/userModel';
 // import Promise from 'bluebird';
 import isEmpty from 'lodash/isEmpty';
 
 let router = express.Router();
-
+console.log('starting usersServer...'.white);
 
 function validateInput(data) {
   // Server Side validations
@@ -49,6 +50,7 @@ function validateInput(data) {
   // });
 }
 
+// 一意生validations onBlur
 router.get('/:identifier', (req, res) => {
   User.query({
     select: [ 'username', 'email' ],
@@ -59,18 +61,24 @@ router.get('/:identifier', (req, res) => {
   });
 });
 
+// user登録
 router.post('/', (req, res) => {
     // Server Side validations & db after validations
-
     validateInput(req.body).then(({ errors, isValid }) => {
     // db
     if(isValid) {
         // 正規化
-        const { username,timezone,email,password } = req.body;
+        const { username,
+                timezone,
+                email,
+                password } = req.body;
         const password_digest = bcrypt.hashSync(password, 10);
 
-        User.forge({ //db save & validations
-          username,timezone,email,password_digest
+        User.forge({ //db save & knex validations
+          username,
+          timezone,
+          email,
+          password_digest
         },{ hasTimestamps: true }).save()
           .then(user => res.json({ success: true })) //db validations true
           .catch(error => res.status(500).json({ error: error }));//db validations false
