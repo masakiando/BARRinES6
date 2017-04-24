@@ -1,6 +1,7 @@
 // This component handles the App template used on every page.
 import React, {PropTypes} from 'react';
 import Header from './common/Header';
+import NavigartonBar from './NavigartonBar';
 import {connect} from 'react-redux';
 import { Link } from 'react-router';
 import FlashMessagesList from './flash/FlashMessagesList';
@@ -11,8 +12,7 @@ class App extends React.Component {
     return (
       <div className="container-fluid">
         <FlashMessagesList />
-        <Link to="/signup" className="box-link navbar-right" activeClassName="active">SignUp</Link>
-        <Link to="/login" className="box-link navbar-right" activeClassName="active">Login</Link>
+        <NavigartonBar />
         <Header
           loading={this.props.loading}
         />

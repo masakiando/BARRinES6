@@ -4,7 +4,17 @@ import setAuthenticationToken from '../utils/setAuthenticationToken';
 import * as types from './actionTypes';
 
 export function setCurrentUser(user) {
+  debugger;
   return {type: types.SET_CURRENT_USER, user};
+}
+
+export function logout() {
+  debugger;
+  return dispatch => {
+    localStorage.removeItem('jwtToken');
+    setAuthenticationToken(false);//login時、Request headersに追加したtokenを削除する
+    dispatch(setCurrentUser({}));
+  };
 }
 
 export function login(data) {

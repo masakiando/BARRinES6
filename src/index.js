@@ -22,7 +22,7 @@ const store = configureStore();
 store.dispatch(loadCourses());
 store.dispatch(loadAuthors());
 
-if (localStorage.jwtToken) {
+if (localStorage.jwtToken) { //localStorageに
   setAuthenticationToken(
     localStorage.jwtToken);
   store.dispatch(
