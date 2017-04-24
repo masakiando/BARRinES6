@@ -11,7 +11,7 @@ import {loadCourses} from './actions/courseActions';
 import {loadAuthors} from './actions/authorActions';
 import setAuthenticationToken from './utils/setAuthenticationToken';
 import jwt from 'jsonwebtoken';
-import { setCurrentUser } from './actions/acthActions';
+import { setCurrentUser } from './actions/authActions';
 
 import './styles/styles.css'; //WebpackもCSSファイルをインポートできます！
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';

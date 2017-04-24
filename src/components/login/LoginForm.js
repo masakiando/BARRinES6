@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 import TextFieldGroup from '../common/TextFieldGroup';
 import commonValidations from '../../../tools/shared/validations/loginValidator';
 import { connect } from 'react-redux';
-import { login } from '../../actions/acthActions';
+import { login } from '../../actions/authActions';
 
 export class LoginForm extends React.Component {
   constructor(props, context) {
