@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 import TextFieldGroup from '../common/TextFieldGroup';
 import commonValidations from '../../../tools/shared/validations/loginValidator';
 import { connect } from 'react-redux';
-import { login } from '../../actions/loginActions';
+import { login } from '../../actions/acthActions';
 
 export class LoginForm extends React.Component {
   constructor(props, context) {
@@ -37,10 +37,13 @@ export class LoginForm extends React.Component {
        //isLoading: trueで button disabled trueにする
        this.props.login(this.state)
        .then(
-         (res) => this.context.router.push('/'), //成功
-         (err) => this.setState({                //失敗
-           errors: err.response.data.errors,
-           isLoading: false })
+         (res) => this.context.router.push('/'), //成功 処理 １
+         (err) => this.setState(                 //失敗 処理 １
+           {
+             errors: err.response.data.errors,   //処理 １-1
+             isLoading: false                    //処理 1-2
+           }
+         )
        );
      }
       debugger;

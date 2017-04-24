@@ -20,22 +20,32 @@ router.post('/', (req, res) => {
     orWhere: { email: identifier }
   }).fetch().then(user => {
     if (user) {
-      if (bcrypt.compareSync(password, user.get('password_digest'))) {
+      if (bcrypt.compareSync(
+        password,
+        user.get('password_digest')
+      )) {
+        console.log('データベースから所得した情報👇'.white);
         console.log(user);
         const token = jwt.sign({
           id: user.get('id'),
           username: user.get('username')
         }, config.jwtSecret);
         res.json({token});
+        console.log(token);
+        console.log('idとusernameを材料としてtoken生成'.white);
         console.log('ログインできます'.green);
       } else {
-        console.log('パスワードが正しくない'.red);
         // express.Router classのstatus methodを使用して401errorを送る json obj付き
         // req先に失敗を返す
-        res.status(401).json({ errors: { form: 'パスワードが正しくない' } });
+        res.status(401).json(
+          {errors: { form: 'パスワードが正しくない' }}
+        );
+        console.log('パスワードが正しくない'.red);
       }
     } else {
-      res.status(401).json({ errors: { form: 'ユーザーが存在しない' } });
+      res.status(401).json(
+        {errors: { form: 'ユーザーが存在しない' }}
+      );
       console.log('ユーザーが存在しない'.red);
     }
   });

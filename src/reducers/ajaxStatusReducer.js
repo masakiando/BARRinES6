@@ -6,7 +6,8 @@ function actionTypeEndsInSuccess(type) {
   return type.substring(type.length - 8) == '_SUCCESS';
 }
 
-export default function ajaxStatusReducer(state = initialState.ajaxCallsInProgress, action) {
+export default function ajaxStatusReducer(
+  state = initialState.ajaxCallsInProgress, action) {
   debugger;
   if (action.type == types.BEGIN_AJAX_CALL) {
     return state + 1;
