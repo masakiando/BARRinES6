@@ -13,6 +13,9 @@ class NavigationBar extends React.Component {
   logout(event) {
     event.preventDefault();
     this.props.logout();
+    // .then(
+    //   () => this.context.router.push('/')
+    // );
   }
 
   render() {
@@ -55,6 +58,10 @@ NavigationBar.propTypes = {
   authentication: PropTypes.object.isRequired,
   logout: PropTypes.func.isRequired
 }
+
+// NavigationBar.contextTypes = {
+//   router: React.PropTypes.object.isRequired
+// }
 
 function mapStateToProps(state) {
   return {

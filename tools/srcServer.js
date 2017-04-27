@@ -5,9 +5,10 @@ import config from '../webpack.config.dev';
 import open from 'open';
 import colors from 'colors';
 
-
 import users from './routes/usersServer';
 import authentication from './routes/acthServer';
+import workshopevent from './routes/workshopeventServer';
+
 import bodyParser from 'body-parser';
 
 /* eslint-disable no-console */
@@ -22,6 +23,7 @@ app.use(bodyParser.json());
 
 app.use('/api/users', users);
 app.use('/api/authentication', authentication); //expressでserverg立ち上げ
+app.use('/api/workshopevent', workshopevent); //expressでserverg立ち上げ
 
 //指定されたマウントミドルウェア指定されたパスに関数や機能を：要求されたパスのベースが一致したときに、ミドルウェア機能が実行されますpath。
 app.use(require('webpack-dev-middleware')(compiler, {

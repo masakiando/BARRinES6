@@ -24,7 +24,7 @@ const CourseListRow = ({
           type="submit"
           disabled={saving}
           value={saving ? '削除中' : '削除'}
-          className="btn btn-primary btn-xs "
+          className="btn btn-primary btn-xs"
           onClick={handleClick}/>
       </td>
     </tr>

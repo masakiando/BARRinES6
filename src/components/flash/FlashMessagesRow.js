@@ -5,11 +5,23 @@ class FlashMessagesRow extends React.Component {
   constructor(props, context) {
     super(props, context);
 
-    this.onClick = this.onClick.bind(this);
+    this.onClose = this.onClose.bind(this);
+  }
+  //Mount後遅延でmessage close
+  componentDidMount() {
+    this.timer = setTimeout(
+      this.onClose,
+      this.props.timeout
+    );
+  }
+  // setTimeoutの設定解除
+  componentWillUnmount() {
+    clearTimeout(this.timer);
   }
 
-  onClick() {
+  onClose() {
     this.props.deleteFlashMessage(this.props.message.id);
+    debugger;
   }
 
   render() {
@@ -21,9 +33,9 @@ class FlashMessagesRow extends React.Component {
         'alert-danger': type === 'error'
       })}>
         <button
-          onClick={this.onClick}
+          onClick={this.onClose}
           className="close"><span>&times;</span></button>
-        ようこそ{text}さん
+        {text}
       </div>
     );
   }
@@ -31,7 +43,13 @@ class FlashMessagesRow extends React.Component {
 
 FlashMessagesRow.propTypes = {
   message: PropTypes.object.isRequired,
-  deleteFlashMessage: PropTypes.func.isRequired
+  deleteFlashMessage: PropTypes.func.isRequired,
+  timeout: PropTypes.number
+};
+
+
+FlashMessagesRow.defaultProps = {
+  timeout: 5000
 };
 
 export default FlashMessagesRow;

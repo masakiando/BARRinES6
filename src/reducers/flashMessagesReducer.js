@@ -4,17 +4,29 @@ import findIndex from 'lodash/findIndex';
 
 export default (state =  [], action = {} ) => {
   const index = findIndex(state, { id: action.id });
+  let newMessageId = shortid.generate();
 
   switch (action.type) {
     case types.ADD_FLASH_MESSAGE:
       return [
-        ...state,
-        {
-           id: shortid.generate(),
-           type: action.message.type,
-           text: action.message.text
-        }
+        // ...state,
+        // {
+        //    id: shortid.generate(),
+        //    type: action.message.type,
+        //    text: action.message.text
+        // }
+        ...state.filter(
+          message => message.id == newMessageId),
+          Object.assign(
+            {},
+            {
+              id: newMessageId,
+              type: action.message.type,
+              text: action.message.text
+            }
+          )
       ];
+
       //Array.prototype.slice()
       case types.DELETE_FLASH_MESSAGE:
       debugger;

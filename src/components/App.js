@@ -11,8 +11,8 @@ class App extends React.Component {
     debugger;
     return (
       <div className="container-fluid">
-        <FlashMessagesList />
         <NavigartonBar />
+        <FlashMessagesList />
         <Header
           loading={this.props.loading}
         />

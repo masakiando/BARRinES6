@@ -41,7 +41,7 @@ class SignupForm extends React.Component {
     return formIsValid;
   }
 
-  // 一意生validations onBlur
+  // onBlur 一意生validations
   checkUserExists(event) {
     debugger;
     const field = event.target.name;
@@ -77,8 +77,9 @@ class SignupForm extends React.Component {
     //Server Side userSignupRequest start
     this.setState({ errors: {}, isLoading: true });
     this.props.userSignupRequest(this.state)
-      .then(() => this.redirect())
-      .catch( error => { this.setState({
+      .then(
+        () => this.redirect())
+        .catch( error => { this.setState({
           errors: error.response.data,
           isLoading: false
         });

@@ -7,6 +7,9 @@ import CoursesPage from './components/course/CoursesPage';
 import ManageCoursePage from './components/course/ManageCoursePage';
 import SignupPage from './components/signup/SignupPage';
 import LoginPage from './components/login/LoginPage';
+import WorkshopEventPage from './components/workshop/WorkshopEventPage';
+
+import requireAuth from './utils/requireAuth';
 
 export default (
   <Route path="/" component={App}>
@@ -18,5 +21,7 @@ export default (
     <Route path="about" component={AboutPage} />
     <Route path="signup" component={SignupPage} />
     <Route path="login" component={LoginPage} />
+    <Route path="workshop-event"
+      component={requireAuth(WorkshopEventPage)} />
 </Route>
 );

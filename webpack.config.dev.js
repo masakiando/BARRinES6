@@ -21,7 +21,7 @@ export default {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(), //node.js APIによるホットモジュールの置き換え//webpack-dev-serverでホットモジュールの交換を有効にするに--hotは、コマンドラインで指定します。これにより、HotModuleReplacementPluginwebpackの設定が追加されます。
-    new webpack.NoErrorsPlugin()//
+    new webpack.NoErrorsPlugin()
   ],
   module: {
     loaders: [

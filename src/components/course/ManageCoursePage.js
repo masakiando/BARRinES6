@@ -81,7 +81,7 @@ export class ManageCoursePage extends React.Component {
     toastr.success('Course saved');
     this.context.router.push('/courses');
   }
-  render() {
+  render() { //propTypes, constructor state, bind(this) 検証
     return (
       <CourseForm
         onChange={this.updateCourseState}
@@ -94,7 +94,8 @@ export class ManageCoursePage extends React.Component {
     );
   }
 }
-// this.props.course authors actionsの検証
+// this.props.course authors actionsの検証 renderで使用
+// mapStateToProps,mapDispatchToPropsで所得したもの
 ManageCoursePage.propTypes = {
   course: PropTypes.object.isRequired,
   authors: PropTypes.array.isRequired,

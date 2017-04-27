@@ -33,7 +33,10 @@ export class LoginForm extends React.Component {
      e.preventDefault();
      debugger;
      if (this.isValid()) { //not emptyなら処理実行
-       this.setState({ errors: {}, isLoading: true });
+       this.setState({
+         errors: {},
+         isLoading: true
+       });
        //isLoading: trueで button disabled trueにする
        this.props.login(this.state)
        .then(
@@ -51,16 +54,27 @@ export class LoginForm extends React.Component {
       // errors: err.response.data.errors,
 
   onChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({
+       [event.target.name]: event.target.value
+     });
   }
 
   render() {
-    const { identifier, errors, password, isLoading } = this.state;
+    const {
+       identifier,
+       errors,
+       password,
+       isLoading
+    } = this.state;
     debugger;
     return (
       <form onSubmit={this.onSubmit}>
         <h1>Login</h1>
-        { errors.form && <div className="alert alert-danger">{errors.form}</div> }
+        { errors.form &&
+          <div className="alert alert-danger">
+            {errors.form}
+          </div>
+        }
 
         <TextFieldGroup
           name="identifier"
