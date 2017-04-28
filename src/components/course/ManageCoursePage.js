@@ -148,6 +148,7 @@ function mapStateToProps(state, ownProps) {
     authors: authorsFormattedForDropdown(state.authors)
   };
 }
+
 //component内ののブラウザイベントを機にcourseActionsをdispatchする
 //自動でactions functionへ繋いでくれる
 function mapDispatchToProps(dispatch) {

@@ -2,18 +2,24 @@ import React, {PropTypes} from 'react';
 import classnames from 'classnames';
 
 const TextFieldGroup = ({
+  onChange,
   name,
-  value,
   label,
+  value,
   error,
   type,
-  onChange,
-  checkUserExists
+  checkUserExists //signupで利用
 }) => {
 
   return (
-    <div className={classnames("form-group", { 'has-error': error })}>
-      <label className="control-label">{label}</label>
+    <div className={
+         classnames(
+           "form-group",
+           {'has-error': error}
+         )}>
+      <label className="control-label">
+        {label}
+      </label>
       <input
         value={value}
         onChange={onChange}
@@ -22,7 +28,10 @@ const TextFieldGroup = ({
         name={name}
         className="form-control"
         />
-      {error && <div className="alert alert-danger">{error}</div>}
+      {error &&
+        <div className="alert alert-danger">
+          {error}
+        </div>}
     </div>
   );
 };

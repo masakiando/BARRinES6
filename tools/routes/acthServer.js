@@ -37,15 +37,19 @@ router.post('/', (req, res) => {
       } else {
         // express.Router classのstatus methodを使用して401errorを送る json obj付き
         // req先に失敗を返す
-        res.status(401).json(
-          {errors: { form: 'パスワードが正しくない' }}
-        );
+        res.status(401).json({
+          errors: {
+            dbAuth: 'パスワードが正しくない'
+          }
+        });
         console.log('パスワードが正しくない'.red);
       }
     } else {
-      res.status(401).json(
-        {errors: { form: 'ユーザーが存在しない' }}
-      );
+      res.status(401).json({
+        errors: {
+          dbAuth: 'ユーザーが存在しない'
+        }
+      });
       console.log('ユーザーが存在しない'.red);
     }
   });

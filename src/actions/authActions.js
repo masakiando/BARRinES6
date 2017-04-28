@@ -12,10 +12,9 @@ export function login(data) {
   debugger;
   console.log(data);
   return dispatch => {
-    return axios.post(
-      '/api/acth', data)
+    return axios.post('/api/acth', data)
     .then(
-      (res) => {                            //成功 処理 １
+      (res) => {                           //成功 処理 １
         const token = res.data.token;       //    処理 １-1-1
         console.log(token);
         localStorage.setItem('jwtToken', token);//処理 １-1-2localStorageに追加

@@ -15,6 +15,6 @@ export default function commonValidations(data) {
     errors,
     isValid: isEmpty(errors)
     //errors objectがあったらfalseを返す
-    //Emptyならtrueを返す
+    //errorsがない errors object空ならtrueを返す
   };
 }

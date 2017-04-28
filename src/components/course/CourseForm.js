@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import TextInput from '../common/TextInput';
 import SelectInput from '../common/SelectInput';
 
@@ -55,12 +55,12 @@ const CourseForm = ({
 };
 
 CourseForm.propTypes = {
-  course: React.PropTypes.object.isRequired,
-  allAuthors: React.PropTypes.array,
-  onSave: React.PropTypes.func.isRequired,
-  onChange: React.PropTypes.func.isRequired,
-  saving: React.PropTypes.bool,
-  errors: React.PropTypes.object
+  course: PropTypes.object.isRequired,
+  allAuthors: PropTypes.array,
+  onSave: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  saving: PropTypes.bool,
+  errors: PropTypes.object
 };
 
 export default CourseForm;
