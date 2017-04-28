@@ -34,7 +34,8 @@ class FlashMessagesRow extends React.Component {
       })}>
         <button
           onClick={this.onClose}
-          className="close"><span>&times;</span></button>
+          className="close"><span>&times;</span>
+        </button>
         {text}
       </div>
     );

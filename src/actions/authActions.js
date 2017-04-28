@@ -13,15 +13,15 @@ export function login(data) {
   console.log(data);
   return dispatch => {
     return axios.post(
-      '/api/authentication', data)
+      '/api/acth', data)
     .then(
       (res) => {                            //成功 処理 １
         const token = res.data.token;       //    処理 １-1-1
         console.log(token);
         localStorage.setItem('jwtToken', token);//処理 １-1-2localStorageに追加
         setAuthenticationToken(token);          //処理 １-1-3Request headersに追加
-        console.log(jwt.decode(token)); //node net,dns jwt.signを元に戻す
-        dispatch(setCurrentUser(jwt.decode(token)));
+        console.log(jwt.decode(token)); //node net,dns jwt.signしたtokenをdecodeで元に戻す
+        dispatch(setCurrentUser(jwt.decode(token))); // jwt.signしたtokenをdecodeで元にもどしてstoreのstateとする。
       }
     );
   };

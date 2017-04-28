@@ -93,12 +93,14 @@ class SignupForm extends React.Component {
       text: 'You signed up seccessfully. Welcome!'
     });
     this.context.router.push('/');
+    // browserHistory.push('/');
   }
 
   render() {
     const { errors } = this.state;
-    const options = map(timezones, (val, key) =>
-      <option key={val} val={val}>{key}</option>
+    const options = map(
+      timezones,
+      (val, key) => <option key={val} val={val}>{key}</option>
     );
     return (
       <form onSubmit={this.onSubmit}>
@@ -151,7 +153,7 @@ class SignupForm extends React.Component {
             {options}
           </select>
           {errors.timezone && <div className="alert alert-danger">{errors.timezone}</div>}
-          </div>
+        </div>
 
           <div className="form-group">
             <button disabled={

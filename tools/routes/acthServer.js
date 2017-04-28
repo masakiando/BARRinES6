@@ -10,7 +10,7 @@ console.log('starting acthServer...'.white);
 
 //login認証 req受け取り 正規化 validations res
 router.post('/', (req, res) => {
-  console.log('Authentication start...'.white);
+  console.log('acth start...'.white);
   console.log(req.body);
 
   const { identifier, password } = req.body;

@@ -16,14 +16,14 @@ function validateInput(data) {
   // Server Side validations
   let { errors } = commonValidations(data);
 
-  //db after validations(1)
+  //db after validations(1) 一意生validations
   return User.query({
     where: { email: data.email },
     orWhere: { username: data.username }
   }).fetch().then(user => {
     if (user) {
       if (user.get('username') === data.username) {
-        errors.username = 'There is user with such username';
+        errors.username = 'There is user with such username'; //このようなユーザー名を持つユーザーがいます
       }
       if (user.get('email') === data.email ) {
         errors.email  = 'There is user with such email ';
@@ -67,7 +67,7 @@ router.post('/', (req, res) => {
     validateInput(req.body).then(({ errors, isValid }) => {
     // db
     if(isValid) {
-        // 正規化
+        // pass暗号化
         const { username,
                 timezone,
                 email,

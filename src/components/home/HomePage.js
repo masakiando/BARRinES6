@@ -1,6 +1,5 @@
 import React from 'react';
 import {Link} from 'react-router';
-import FlashMessagesList from '../flash/FlashMessagesList';
 
 class HomePage extends React.Component {
   render() {

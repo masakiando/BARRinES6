@@ -63,6 +63,9 @@ NavigationBar.propTypes = {
 //   router: React.PropTypes.object.isRequired
 // }
 
+//login componentにてlogin後storeがstate.authenticationが持つ
+//そのstate.authentication.isAuthenticatedによって表示を切り替える
+// { isAuthenticated ? userLinks : guestLinks }
 function mapStateToProps(state) {
   return {
     authentication: state.authentication
