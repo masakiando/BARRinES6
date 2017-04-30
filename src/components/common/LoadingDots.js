@@ -29,15 +29,15 @@ class LoadingDots extends React.Component {
     let dots = this.state.frame % (this.props.dots + 1);
     let text = '';
     while (dots > 0) {
-      text += 'ロード中';
+      text += '☕️';
       dots--;
     }
     return <span {...this.props}>{text}&nbsp;</span>;
   }
 }
-
+//親props設定ない時defaultProps使う
 LoadingDots.defaultProps = {
-  interval: 300, dots: 3
+  interval: 300, dots: 20
 };
 
 LoadingDots.propTypes = {

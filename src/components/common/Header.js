@@ -9,11 +9,13 @@ const Header = ({loading}) => {
       <Link to="/courses" className="box-link" activeClassName="active">Courses</Link>{" | "}
       <Link to="/workshop-event" className="box-link" activeClassName="active">Workshop Event</Link>{" | "}
       <Link to="/about" className="box-link" activeClassName="active">About</Link>
-      <br />{loading && <LoadingDots interval={100} dots={20}/>}
+      <br />
+      {loading &&<LoadingDots interval={100} dots={20}/>}
+      {!loading &&<span>&nbsp;</span>}
     </nav>
   );
 };
-
+// {loading && <LoadingDots interval={100} dots={20}/>}
 Header.propTypes = {
   loading: PropTypes.bool.isRequired
 };
