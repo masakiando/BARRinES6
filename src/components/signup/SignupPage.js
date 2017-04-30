@@ -1,8 +1,9 @@
 import React, {PropTypes} from 'react';
-import SignupForm from './SignupForm';
 import { connect } from 'react-redux';
-import { userSignupRequest, isUserExists } from '../../actions/signupActions';
-import { addFlashMessage } from '../../actions/flashMessagesActions';
+import {bindActionCreators} from 'redux';
+import SignupForm from './SignupForm';
+import * as signupActions from '../../actions/signupActions';
+import * as flashMessagesActions from '../../actions/flashMessagesActions';
 import commonValidations from '../../../tools/shared/validations/signupValidator';
 import toastr from 'toastr';
 // import {browserHistory} from 'react-router';
@@ -52,7 +53,7 @@ class SignupPage extends React.Component {
     const field = event.target.name;
     const val = event.target.value;
     if (val !== '') {
-      this.props.isUserExists(val).then(res => {
+      this.props.signupActions.isUserExists(val).then(res => {
         let errors = this.state.errors;
         let inValid = this.state.inValid;
         let newinValid;
@@ -81,7 +82,7 @@ class SignupPage extends React.Component {
     debugger;
     //Server Side userSignupRequest start
     this.setState({ errors: {}, isLoading: true });
-    this.props.userSignupRequest(this.state)
+    this.props.signupActions.userSignupRequest(this.state)
       .then(
         () => this.redirect())
         .catch( error => { this.setState({
@@ -93,7 +94,7 @@ class SignupPage extends React.Component {
   }
   redirect() {
     toastr.success('Signup saved');
-    this.props.addFlashMessage({
+    this.props.flashMessagesActions.addFlashMessage({
       type: 'success',
       text: 'You signed up seccessfully. Welcome!'
     });
@@ -101,7 +102,6 @@ class SignupPage extends React.Component {
     // browserHistory.push('/');
   }
   render() {
-    // const { userSignupRequest, addFlashMessage, isUserExists } = this.props;
     return (
       <div className="row">
         <div className="col-md-4 col-md-offset-4">
@@ -126,13 +126,19 @@ class SignupPage extends React.Component {
 }
 
 SignupPage.propTypes = {
-  userSignupRequest: PropTypes.func.isRequired,
-  addFlashMessage: PropTypes.func.isRequired,
-  isUserExists: PropTypes.func
+  signupActions: PropTypes.object.isRequired,
+  flashMessagesActions: PropTypes.object.isRequired
 };
 //Pull in the React Router context so router is available on this.context.router.
 SignupPage.contextTypes = {
   router: PropTypes.object
 };
 
-export default connect(null, { userSignupRequest, addFlashMessage, isUserExists })(SignupPage);
+function mapDispatchToProps(dispatch) {
+  return {
+    signupActions: bindActionCreators(signupActions, dispatch),
+    flashMessagesActions: bindActionCreators(flashMessagesActions, dispatch)
+  };
+}
+
+export default connect(null, mapDispatchToProps)(SignupPage);
