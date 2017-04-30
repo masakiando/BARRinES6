@@ -19,4 +19,12 @@ export default function configureStore(initialState) {
 // エラーが発生するReduxミドルウェア。開発用にのみ！
 // import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 
-    // applyMiddleware(thunk, reduxImmutableStateInvariant())
+// applyMiddleware(thunk, reduxImmutableStateInvariant())
+
+
+// import {composeWithDevTools} from 'redux-devtools-extension';
+// composeWithDevTools(
+//   applyMiddleware(
+//     thunk,reduxImmutableStateInvariant()
+//   )
+// )
