@@ -13,7 +13,7 @@ export class LoginPage extends React.Component {
       identifier: '',
       password: '',
       errors: {},
-      loading: false
+      isLoading: false
     };
     this.updaTetargetState = this.updaTetargetState.bind(this);
     this.onLogin = this.onLogin.bind(this);
@@ -42,7 +42,7 @@ export class LoginPage extends React.Component {
     if (this.isValid()) { //isValid true なら処理実行
       this.setState({ //1回目のcommonValidationsでerrorあったら{}に値あるため空にする
         errors: {},
-        loading: true
+        isLoading: true
       });
       //isLoading: trueで button disabled trueにする
       this.props.actions.login(this.state)
@@ -51,7 +51,7 @@ export class LoginPage extends React.Component {
         (err) => this.setState({                //失敗 処理 １
             //errors.formにerror表示            res.status(401)
           errors: err.response.data.errors,   //処理 １-1 form: 'ユーザーが存在しない' か form: 'パスワードが正しくない'
-          loading: false                    //処理 1-2
+          isLoading: false                    //処理 1-2
         })
       );
     }
@@ -68,7 +68,7 @@ export class LoginPage extends React.Component {
             identifier={this.state.identifier}
             password={this.state.password}
             errors={this.state.errors}
-            loading={this.state.loading}
+            isLoading={this.state.isLoading}
           />
         </div>
       </div>

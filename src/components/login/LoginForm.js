@@ -7,7 +7,7 @@ const LoginForm = ({
   identifier,
   password,
   errors,
-  loading
+  isLoading
 }) => {
   return (
     <form onSubmit={onLogin}>
@@ -37,9 +37,9 @@ const LoginForm = ({
       />
 
       <div className="form-group">
-      <button disabled={loading}
+      <button disabled={isLoading}
               className="btn btn-primary btn-lg">
-        {loading ? 'Login中' : 'Login'}
+        {isLoading ? 'Login中' : 'Login'}
       </button>
       </div>
     </form>
@@ -52,7 +52,7 @@ LoginForm.propTypes = {
   identifier: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
   errors: PropTypes.object,
-  loading: PropTypes.bool
+  isLoading: PropTypes.bool
 };
 
 export default LoginForm;

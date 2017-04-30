@@ -37,12 +37,12 @@ const TextFieldGroup = ({
 };
 
 TextFieldGroup.propTypes = {
+  onChange: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   value: PropTypes.string,
   label: PropTypes.string.isRequired,
   error: PropTypes.string,
   type: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
   checkUserExists: PropTypes.func
 };
 

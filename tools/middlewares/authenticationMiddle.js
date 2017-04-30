@@ -36,4 +36,4 @@ export default (req, res, next) => {
       error: 'No token provided'
     });
   }
-}
+};

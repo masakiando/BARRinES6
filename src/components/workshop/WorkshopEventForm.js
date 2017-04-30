@@ -32,7 +32,7 @@ class WorkshopEventForm extends React.Component {
       title,
       errors,
       isLoading
-    } = this.state
+    } = this.state;
 
     return (
       <form onSubmit={this.onSubmit}>

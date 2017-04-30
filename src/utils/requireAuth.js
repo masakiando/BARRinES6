@@ -35,11 +35,11 @@ export default function(ComposedComponent) {
   Authenticate.propTypes = {
     isAuthenticated: PropTypes.bool.isRequired,
     addFlashMessage: PropTypes.func.isRequired
-  }
+  };
   //.push('/');がobjectか検証 routerをpullする
   Authenticate.contextTypes = {
     router: PropTypes.object.isRequired
-  }
+  };
 
   function mapStateToProps(state) {
     return {

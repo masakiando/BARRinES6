@@ -46,7 +46,7 @@ class NavigationBar extends React.Component {
           </div>
 
           <div className="collapse navbar-collapse">
-            { isAuthenticated ? userLinks : guestLinks }
+            {isAuthenticated ? userLinks : guestLinks}
           </div>
         </div>
       </nav>
@@ -57,7 +57,7 @@ class NavigationBar extends React.Component {
 NavigationBar.propTypes = {
   authentication: PropTypes.object.isRequired,
   logout: PropTypes.func.isRequired
-}
+};
 
 // NavigationBar.contextTypes = {
 //   router: React.PropTypes.object.isRequired
