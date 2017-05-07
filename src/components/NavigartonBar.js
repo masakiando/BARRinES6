@@ -37,7 +37,7 @@ class NavigationBar extends React.Component {
         <li><Link to="/login">Login</Link></li>
       </ul>
     );
-
+    debugger;
     return (
       <nav className="navbar navbar-default">
         <div className="container-fluid">
@@ -67,6 +67,7 @@ NavigationBar.propTypes = {
 //そのstate.authentication.isAuthenticatedによって表示を切り替える
 // { isAuthenticated ? userLinks : guestLinks }
 function mapStateToProps(state) {
+  debugger;
   return {
     authentication: state.authentication
   };

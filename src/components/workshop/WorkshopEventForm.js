@@ -36,7 +36,7 @@ class WorkshopEventForm extends React.Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <h1>Workshop Event</h1>
+        <h1>Manage Workshop</h1>
 
         <TextFieldGroup
           name="title"

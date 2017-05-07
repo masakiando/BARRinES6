@@ -43,7 +43,7 @@ class CoursesPage extends React.Component {
 
   render() {
     debugger;
-    const {courses} = this.props;
+    const {courses} = this.props;//1つの時
 
     return (
       <div>

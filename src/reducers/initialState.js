@@ -5,5 +5,6 @@ export default {
   authentication: {
     isAuthenticated: false,
     user: {}
-  }
+  },
+  games: []
 };

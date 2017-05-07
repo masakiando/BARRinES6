@@ -2,10 +2,10 @@ import React, {PropTypes} from 'react';
 import classnames from 'classnames';
 
 const TextFieldGroup = ({
-  onChange,
   name,
   label,
   value,
+  onChange,
   error,
   type,
   checkUserExists //signupで利用

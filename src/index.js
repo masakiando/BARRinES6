@@ -9,6 +9,7 @@ import { Router, browserHistory } from 'react-router';
 import routes from './routes';
 import {loadCourses} from './actions/courseActions';
 import {loadAuthors} from './actions/authorActions';
+import {loadGames} from './actions/gameActions';
 import setAuthenticationToken from './utils/setAuthenticationToken';
 import jwt from 'jsonwebtoken';
 import { setCurrentUser } from './actions/authActions';
@@ -21,6 +22,7 @@ import '../node_modules/toastr/build/toastr.min.css';
 const store = configureStore();
 store.dispatch(loadCourses());
 store.dispatch(loadAuthors());
+store.dispatch(loadGames());
 
 if (localStorage.jwtToken) { //localStorageに
   setAuthenticationToken(

@@ -83,15 +83,15 @@ class SignupPage extends React.Component {
     //Server Side userSignupRequest start
     this.setState({ errors: {}, isLoading: true });
     this.props.signupActions.userSignupRequest(this.state)
-      .then(
-        () => this.redirect())
-        .catch( error => { this.setState({
+      .then(() => this.redirect())
+      .catch( error => {
+        this.setState({
           errors: error.response.data,
           isLoading: false
         });
-      }
-    );
+      });
   }
+
   redirect() {
     toastr.success('Signup saved');
     this.props.flashMessagesActions.addFlashMessage({

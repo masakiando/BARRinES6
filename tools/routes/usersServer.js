@@ -14,24 +14,25 @@ console.log('starting usersServer...'.white);
 
 function validateInput(data) {
   // Server Side validations
-  let { errors } = commonValidations(data);
+  let { errors, isValid } = commonValidations(data);
 
   //db after validations(1) 一意生validations
   return User.query({
     where: { email: data.email },
     orWhere: { username: data.username }
-  }).fetch().then(user => {
-    if (user) {
-      if (user.get('username') === data.username) {
-        errors.username = 'There is user with such username'; //このようなユーザー名を持つユーザーがいます
+  }).fetch()
+  .then(user => {
+      if (user) {
+        if (user.get('username') === data.username) {
+          errors.username = 'There is user with such username'; //このようなユーザー名を持つユーザーがいます
+        }
+        if (user.get('email') === data.email ) {
+          errors.email  = 'There is user with such email ';
+        }
       }
-      if (user.get('email') === data.email ) {
-        errors.email  = 'There is user with such email ';
-      }
-    }
-    return {
-      errors,
-      isValid: isEmpty(errors)
+      return {
+        errors,
+        isValid: isEmpty(errors)
     };
   });
   // //db after validations(2) Promise bluebird
@@ -64,27 +65,29 @@ router.get('/:identifier', (req, res) => {
 // user登録
 router.post('/', (req, res) => {
     // Server Side validations & db after validations
-    validateInput(req.body).then(({ errors, isValid }) => {
+    validateInput(req.body)
+    .then( ({ errors, isValid }) => {
     // db
-    if(isValid) {
-        // pass暗号化
+      if(isValid) {
+          // pass暗号化
         const { username,
-                timezone,
-                email,
-                password } = req.body;
+                 timezone,
+                 email,
+                 password
+                } = req.body;
         const password_digest = bcrypt.hashSync(password, 10);
 
-        User.forge({ //db save & knex validations
-          username,
-          timezone,
-          email,
-          password_digest
-        },{ hasTimestamps: true }).save()
-          .then(user => res.json({ success: true })) //db validations true
-          .catch(error => res.status(500).json({ error: error }));//db validations false
+          User.forge({ //db save & knex validations
+            username,
+            timezone,
+            email,
+            password_digest
+          },{ hasTimestamps: true }).save()
+            .then(user => res.json({ success: true })) //db validations true
+            .catch(error => res.status(500).json({ error: error }));//db validations false
       } else { // Server Side validations false
-        res.status(400).json(errors);
-      }
+          res.status(400).json(errors);
+        }
     });
 });
 

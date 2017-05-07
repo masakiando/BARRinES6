@@ -3,12 +3,12 @@ import TextInput from '../common/TextInput';
 import SelectInput from '../common/SelectInput';
 
 const CourseForm = ({
-  course,
-  allAuthors,
-  onSave,
   onChange,
-  saving,
-  errors
+  onSave,
+  allAuthors,
+  course,
+  errors,
+  saving
 }) => {
   return (
     <form>
@@ -16,7 +16,7 @@ const CourseForm = ({
       <TextInput
         name="title"
         label="Title"
-        placeholder="コースのタイトルを入力してください。"
+        placeholder="コースのタイトルを入力してください"
         value={course.title}
         onChange={onChange}
         error={errors.title}/>
@@ -55,12 +55,12 @@ const CourseForm = ({
 };
 
 CourseForm.propTypes = {
-  course: PropTypes.object.isRequired,
-  allAuthors: PropTypes.array,
-  onSave: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
-  saving: PropTypes.bool,
-  errors: PropTypes.object
+  onSave: PropTypes.func.isRequired,
+  allAuthors: PropTypes.array,
+  course: PropTypes.object.isRequired,
+  errors: PropTypes.object,
+  saving: PropTypes.bool
 };
 
 export default CourseForm;

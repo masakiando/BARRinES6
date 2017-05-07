@@ -55,24 +55,28 @@ export class ManageCoursePage extends React.Component {
       formIsValid = false;
     }
     this.setState({errors: errors});
-    return formIsValid; // 初期値true, errors なら falseを返す
+    return formIsValid;
+    // FormIsValid errorsない時はtrueを返す
+    // FormIsValid errorsある時はfalseを返す
   }
-
 
   saveCourse(event) {
     debugger;
     event.preventDefault();
 
-    if(!this.CourseFormIsValid()) { //falseなら処理終了
+    if(!this.CourseFormIsValid()) {
+      // FormIsValidがfalseなら条件一致し
+      // save処理はここまでで処理を終了する
       return;
     }
 
     this.setState({saving: true});
     this.props.actions.saveCourse(this.state.course)
-      .then(() => this.redirect()).catch(error => {
-      toastr.error(error);
-      this.setState({saving: false});
-    });
+      .then(() => this.redirect())
+      .catch(error => {
+        toastr.error(error);
+        this.setState({saving: false});
+      });
   }
 
   redirect() {

@@ -1,15 +1,17 @@
+// packages
 import express from 'express';
 import webpack from 'webpack';
 import path from 'path';
-import config from '../webpack.config.dev';
 import open from 'open';
 import colors from 'colors';
-
+import bodyParser from 'body-parser';
+// build config
+import config from '../webpack.config.dev';
+// routes Module
 import users from './routes/usersServer';
 import acth from './routes/acthServer';
 import workshopevent from './routes/workshopeventServer';
-
-import bodyParser from 'body-parser';
+import games from './routes/gamesServer';
 
 /* eslint-disable no-console */
 
@@ -20,10 +22,12 @@ const compiler = webpack(config);
 console.log('starting srcServer...'.white);
 // reqパラメータをJSONで取得
 app.use(bodyParser.json());
-//reqを受け付けし担当するとサーバへー引き継ぐ
+
+//routes reqを受け付けし担当するとサーバへー引き継ぐ
 app.use('/api/users', users); //expressでserverg立ち上げ
 app.use('/api/acth', acth); //expressでserverg立ち上げ
 app.use('/api/workshopevent', workshopevent); //expressでserverg立ち上げ
+app.use('/api/games', games);
 
 //指定されたマウントミドルウェア指定されたパスに関数や機能を：要求されたパスのベースが一致したときに、ミドルウェア機能が実行されますpath。
 app.use(require('webpack-dev-middleware')(compiler, {

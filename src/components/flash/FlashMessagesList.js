@@ -10,7 +10,6 @@ class FlashMessagesList extends React.Component {
   }
 
   render() {
-    debugger;
     const message = this.props.messages.map(message =>
       <FlashMessagesRow
         key={message.id}
@@ -18,6 +17,7 @@ class FlashMessagesList extends React.Component {
         deleteFlashMessage={this.props.deleteFlashMessage}
       />
     );
+    debugger;
     return (
       <div>{message}</div>
     );

@@ -4,9 +4,9 @@ import initialState from './initialState';
 export default function courseReducer(
   state = initialState.courses, action) {
   switch (action.type) {
+
     case types.LOAD_COURSES_SUCCESS:
-    debugger;
-    return action.courses;
+      return action.courses;
 
     //returnの第１引数で現在の...state複製する
     //第２引数で新しいcourse作る

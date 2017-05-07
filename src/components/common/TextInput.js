@@ -3,9 +3,9 @@ import React, {PropTypes} from 'react';
 const TextInput = ({
   name,
   label,
-  onChange,
   placeholder,
   value,
+  onChange,
   error
 }) => {
 
@@ -19,12 +19,12 @@ const TextInput = ({
       <label htmlFor={name}>{label}</label>
       <div className="field">
         <input
-          type="text"
           name={name}
-          className="form-control"
           placeholder={placeholder}
           value={value}
-          onChange={onChange}/>
+          onChange={onChange}
+          className="form-control"
+          type="text"/>
         {error && <div className="alert alert-danger">{error}</div>}
       </div>
     </div>
