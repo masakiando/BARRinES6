@@ -22,7 +22,7 @@ import '../node_modules/toastr/build/toastr.min.css';
 const store = configureStore();
 store.dispatch(loadCourses());
 store.dispatch(loadAuthors());
-store.dispatch(loadGames());
+// store.dispatch(loadGames());
 
 if (localStorage.jwtToken) { //localStorageに
   setAuthenticationToken(

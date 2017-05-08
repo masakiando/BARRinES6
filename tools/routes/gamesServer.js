@@ -107,6 +107,23 @@ router.post('/', (req, res) => {
 //   }
 // });
 
+  router.get('/:id', (req, res) => {
+    console.log(req);
+    console.log('get id😄'.blue);
+    console.log(req.params);
+    console.log(req.params.id);
+    if(err) {
+      console.log('Connected to db NG 😩'.red);
+      console.log(err);
+    } else {
+        db.collection('games').findOne({
+          _id: new mongodb.ObjectId(req.params.id) },
+           (err, game) => {res.json(game);
+        console.log({ game });
+      });
+    }
+  });
+
   //req.methodと一致なしの時は404errorを返す
   router.use((req, res) => {
     res.status(404).json({
@@ -114,6 +131,7 @@ router.post('/', (req, res) => {
         global: "Still working on it. Please try again later when we implement it"
       }
     });
+    console.log('Server req 受け取れない 😩'.red);
   });
 });
 

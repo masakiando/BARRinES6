@@ -12,6 +12,9 @@ class GamesPage extends React.Component {
     this.deleteCourse = this.deleteCourse.bind(this);
   }
 
+  componentDidMount() {
+    this.props.actions.loadGames();
+  }
   deleteCourse(courseId) {
     // this.setState({saving: true});
     // this.props.actions.deleteCourse(courseId)

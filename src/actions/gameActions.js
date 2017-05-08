@@ -4,6 +4,11 @@ import {beginAjaxCall, ajaxCallError} from './ajaxStatusActions';
 export function loadGamesSuccess(games) {
   return { type: types.LOAD_GAMES_SUCCESS, games};
 }
+// one game load
+export function loadGameSuccess(game) {
+  debugger;
+  return { type: types.LOAD_GAME_SUCCESS, game};
+}
 
 export function createGameSuccess(game) {
   return {type: types.CREATE_GAME_SUCCESS, game};
@@ -16,6 +21,17 @@ export function loadGames() {
       .then(res => res.json())
       .then(games => {
         dispatch(loadGamesSuccess(games));
+    });
+  };
+}
+// one game load
+export function loadGame(id) {
+  debugger;
+  return function (dispatch) {
+    fetch(`/api/games/${id}`)
+      .then(res => res.json())
+      .then(game => {
+        dispatch(loadGameSuccess(game));
     });
   };
 }

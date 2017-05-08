@@ -21,6 +21,28 @@ export class ManageGamePage extends React.Component {
     this.updateGameState = this.updateGameState.bind(this);
     this.saveGame = this.saveGame.bind(this);
   }
+  // all data
+  // componentDidMount() {
+  //   debugger;
+  //   this.props.actions.loadGames();
+  // }
+
+  // one game data
+  componentDidMount() {
+    debugger;
+    if (this.props.params.id) {
+      this.props.actions.loadGame(this.props.params.id);
+    }
+  }
+
+  // componentWillReceiveProps(nextProps) {
+  //   debugger;
+  //   if (this.props.game.id != nextProps.game._id) {
+  //     this.setState({
+  //       game: Object.assign({}, nextProps.game)
+  //     });
+  //   }
+  // }
 
   componentWillReceiveProps(nextProps) {
     debugger;
