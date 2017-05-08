@@ -39,9 +39,10 @@ mongodb.MongoClient.connect(dbUrl, function(err, db) {
   router.get('/', (req, res) => {
     setTimeout(() => {
       if(err) {
+        console.log('I was not connected to the database with get method. 😩'.red);
         console.log(err);
       } else {
-        console.log('Connected to db');
+        console.log('Connect to the database with get method 😏'.blue);
         db.collection('games').find({}).toArray( (err, games) => {
           if(err) {
             throw(err);
@@ -56,11 +57,10 @@ mongodb.MongoClient.connect(dbUrl, function(err, db) {
 
 router.post('/', (req, res) => {
   if(err) {
-    console.log('Connected to db NG 😩'.red);
+    console.log('I was not connected to the database with post method. 😩'.red);
     console.log(err);
   } else {
-
-    console.log('req.bodyだよ 😏'.blue, req.body);
+    console.log('req.bodyだよ 😏'.blue);
     const { errors, isValid } = validateInput(req.body);
     if(isValid) {
       console.log('Server isValid Pass 😄'.blue);
@@ -75,9 +75,8 @@ router.post('/', (req, res) => {
           });
         } else {
           // db save後 result配列から保存したdata取り出す
-          res.json({ game: result.ops[0] }); // title, cover, id
-          console.log(result);
-          console.log({ game: result.ops[0] });
+          res.json(result.ops[0]); // title, cover, id
+          console.log(result.ops[0]);
         }
       });
     } else {
@@ -107,6 +106,40 @@ router.post('/', (req, res) => {
 //   }
 // });
 
+  router.put('/:_id', (req, res) => {
+    if(err) {
+      console.log('I was not connected to the database with put method. 😩'.red);
+      console.log(err);
+    } else {
+      console.log('Connect to the database with put method 😏'.blue);
+      const { errors, isValid } = validateInput(req.body);
+
+      if (isValid) {
+        const { title, cover } = req.body;
+        db.collection('games').findOneAndUpdate(
+          { _id: new mongodb.ObjectId(req.params._id) },
+          { $set: { title, cover } },
+          { returnOriginal: false },
+          (err, result) => {
+            if (err) {
+              res.status(500).json({
+                 errors: {
+                   global: err
+                 }
+               });
+            } else {
+              res.json(result.value);
+              console.log(result);
+              console.log({ game: result.value });
+              console.log('It saved in the database. 👍'.blue);
+            }
+          }
+        );
+      } else {
+        res.status(400).json({ errors });
+      }
+    }
+  });
   //req.methodと一致なしの時は404errorを返す
   router.use((req, res) => {
     res.status(404).json({

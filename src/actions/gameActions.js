@@ -6,7 +6,12 @@ export function loadGamesSuccess(games) {
 }
 
 export function createGameSuccess(game) {
+  debugger;
   return {type: types.CREATE_GAME_SUCCESS, game};
+}
+
+export function updateGameSuccess(game) {
+  return {type: types.UPDATE_GAME_SUCCESS, game};
 }
 
 export function loadGames() {
@@ -35,12 +40,22 @@ function handleResponse(response) {
 export function saveGame(game) {
   debugger;
   return function (dispatch, getState) {
-    return fetch('/api/games', { // XMLHttpRequest
-      method: 'post',
-      body: JSON.stringify(game),
-      headers: {'Content-Type': 'application/json'}
-    }).then(handleResponse).then(game => {
-      dispatch(createGameSuccess(game));
-    });
+    if (!game._id) {
+      return fetch('/api/games', { // XMLHttpRequest
+        method: 'post',
+        body: JSON.stringify(game),
+        headers: {'Content-Type': 'application/json'}
+      }).then(handleResponse).then(game => { //取り出した名をgameとする
+        dispatch(createGameSuccess(game));
+      });
+    } else {
+      return fetch(`/api/games/${game._id}`, { // XMLHttpRequest
+        method: 'put',
+        body: JSON.stringify(game),
+        headers: {'Content-Type': 'application/json'}
+      }).then(handleResponse).then(game => { //取り出した名をgameとする
+        dispatch(updateGameSuccess(game));
+      });
+    }
   };
 }

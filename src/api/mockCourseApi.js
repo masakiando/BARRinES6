@@ -102,6 +102,7 @@ class CourseApi {
         debugger;
         // 結果を返します。
         resolve(course);
+        console.log(course);
         // 遅延時間。
       }, delay);
     });

@@ -6,9 +6,10 @@ const GameCard = ({
   }) => {
     let cardStyle = {
       height: 250,
-      width: "30%",
+      width: "45%",
       padding: 0,
       margin: 20,
+      border: 10,
       borderRadius: "0 0 5px 5px",
       display: "inline-block",
       backgroundColor: "#FFF",

@@ -9,6 +9,7 @@ class GamesPage extends React.Component {
   constructor(props, context) {
     super(props, context);
 
+    this.redirectToAddGamePage = this.redirectToAddGamePage.bind(this);
     this.deleteCourse = this.deleteCourse.bind(this);
   }
 

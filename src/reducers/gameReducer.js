@@ -3,6 +3,7 @@ import initialState from './initialState';
 
 export default function gameReducer(
   state = initialState.games, action) {
+
   switch (action.type) {
 
     case types.LOAD_GAMES_SUCCESS:
@@ -11,8 +12,24 @@ export default function gameReducer(
     case types.CREATE_GAME_SUCCESS:
       return [
         ...state,
-        Object.assign({}, action.gams)
+        action.game
       ];
+
+    // update(1)更新日順
+    // case types.UPDATE_GAME_SUCCESS:
+    //   debugger;
+    //   return [
+    //     ...state.filter(game => game._id !== action.game._id),
+    //     Object.assign({}, action.game)
+    //   ];
+
+    // update(2)新規登録順
+    case types.UPDATE_GAME_SUCCESS:
+      debugger;
+      return state.map(a => {
+        if(a._id === action.game._id) return action.game;
+        return a;
+    });
 
     default: return state;
   }
