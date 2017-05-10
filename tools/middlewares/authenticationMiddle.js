@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 import config from '../config';
 import User from '../models/userModel';
 
+// workshopeventServerでpost時に使用します。
 export default (req, res, next) => {
   const authenticationHeader = req.headers['authentication'];
   let token;

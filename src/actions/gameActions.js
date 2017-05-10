@@ -1,6 +1,7 @@
 import * as types from './actionTypes';
 import {beginAjaxCall, ajaxCallError} from './ajaxStatusActions';
 
+
 export function loadGamesSuccess(games) {
   return { type: types.LOAD_GAMES_SUCCESS, games};
 }
@@ -14,6 +15,11 @@ export function updateGameSuccess(game) {
   return {type: types.UPDATE_GAME_SUCCESS, game};
 }
 
+export function deleteGameSuccess(gameId) {
+  debugger;
+  return {type: types.DELETE_GAME_SUCCESS, gameId};
+}
+
 export function loadGames() {
   debugger;
   return function (dispatch) {
@@ -21,6 +27,8 @@ export function loadGames() {
       .then(res => res.json())
       .then(games => {
         dispatch(loadGamesSuccess(games));
+    }).catch(error => {
+      throw(error);
     });
   };
 }
@@ -57,5 +65,18 @@ export function saveGame(game) {
         dispatch(updateGameSuccess(game));
       });
     }
+  };
+}
+
+// deleteGame
+export function deleteGame(gameId) {
+  return function (dispatch, getState) {
+    return fetch(`/api/games/${gameId}`, {
+      method: 'DELETE',
+      body: JSON.stringify({}),
+      headers: {'Content-Type': 'application/json'}
+    }).then(handleResponse).then(game => {
+      dispatch(deleteGameSuccess(gameId));
+    });
   };
 }

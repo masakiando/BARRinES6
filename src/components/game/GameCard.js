@@ -35,7 +35,7 @@ const GameCard = ({
     const handleClick = (event) => {
       debugger;
       event.preventDefault();
-      onDelete(game.id);
+      onDelete(game._id);
     };
     return (
       <div className="ui card" style={cardStyle}>

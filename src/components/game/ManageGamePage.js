@@ -77,15 +77,21 @@ export class ManageGamePage extends React.Component {
     }
     debugger;
     this.setState({saving: true});
-    this.props.actions.saveGame(this.state.game).then(
-      () => this.redirect(), //{}
-      (err) => err.response.json().then( //err任意
-        ({errors}) => { //{errors}評価式
-          debugger;
+    this.props.actions.saveGame(this.state.game)
+     .then(
+        () => this.redirect()
+        .catch( err =>  {
+          err.response.json(),
           toastr.error(err);
-          this.setState({errors, saving: false});
+        }
+       )
+     .then(
+       ( {errors} ) => { //{errors}評価式
+       this.setState({
+         errors, saving: false
+       }); //{errors}評価式
       })
-    )
+    );
   }
 
   redirect() {
@@ -123,7 +129,7 @@ ManageGamePage.contextTypes = {
 function getGameById(games, id) {
   debugger;
   const game = games.filter(game => game._id == id);
-  console.log(game)
+  console.log(game);
   if (game) return game[0];
   return null;
 }

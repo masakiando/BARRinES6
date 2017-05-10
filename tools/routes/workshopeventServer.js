@@ -5,8 +5,11 @@ import authenticationMiddle from '../middlewares/authenticationMiddle';
 let router = express.Router();
 console.log('starting workshopeventServer...'.white);
 
-// req受け取り 正規化 validations res
-router.post('/', authenticationMiddle, (req, res) => {
+//イベントの追加 req受け取り authentication validations res
+router.post(
+  '/',
+  authenticationMiddle,
+  (req, res) => {
   console.log('workshopevent start...'.white);
   console.log(req.body);
 

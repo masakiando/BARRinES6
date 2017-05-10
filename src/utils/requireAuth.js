@@ -6,7 +6,7 @@ export default function(ComposedComponent) {
   class Authenticate extends React.Component {
     componentWillMount() {
       debugger;
-      if (!this.props.isAuthenticated) {
+      if (!this.props.isAuthenticated) { //logout状態でWorkshopsPageにアクセスした時
         this.props.addFlashMessage({
           type: 'error',
           text: 'You need to login to access this page'

@@ -18,16 +18,15 @@ import './styles/styles.css'; //WebpackもCSSファイルをインポートで�
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/toastr/build/toastr.min.css';
 
-
 const store = configureStore();
 store.dispatch(loadCourses());
 store.dispatch(loadAuthors());
 store.dispatch(loadGames());
 
-if (localStorage.jwtToken) { //localStorageに
+if (localStorage.jwtToken) { //リロード時localStorageにjwtTokenあれば
   setAuthenticationToken(
     localStorage.jwtToken);
-  store.dispatch(
+  store.dispatch(  //jwtTokenをdecodeしそのユーザーデータをstoreに保管する
     setCurrentUser(
       jwt.decode(localStorage.jwtToken)));
 }

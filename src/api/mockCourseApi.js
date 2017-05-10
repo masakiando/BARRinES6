@@ -107,7 +107,9 @@ class CourseApi {
       }, delay);
     });
   }
-
+  // deleteしたらcoursesでなくcourseIdを返して
+  // クライアント側のデータはreducerでcoursesをフィルターして
+  // courseIdを取り除く方が良い。実際のデータベースではその方が良い
   static deleteCourse(courseId) {
     debugger;
     return new Promise((resolve, reject) => {

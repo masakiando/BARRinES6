@@ -31,6 +31,12 @@ export default function gameReducer(
         return a;
     });
 
+    case types.DELETE_GAME_SUCCESS:
+      debugger;
+      return [
+        ...state.filter(a => a._id !== action.gameId)
+      ];
+
     default: return state;
   }
 }

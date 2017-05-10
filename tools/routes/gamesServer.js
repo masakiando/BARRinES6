@@ -140,6 +140,30 @@ router.post('/', (req, res) => {
       }
     }
   });
+
+  router.delete('/:_id', (req, res) => {
+    if(err) {
+      console.log('I was not connected to the database with delete method. 😩'.red);
+      console.log(err);
+    } else {
+      console.log('Connect to the database with delete method 😏'.blue);
+        db.collection('games').deleteOne(
+          { _id: new mongodb.ObjectId(req.params._id) },
+          (err, result) => {
+            if (err) {
+              res.status(500).json({
+                 errors: {
+                   global: err
+                 }
+               }); return;
+            } else {
+              res.json({});
+              console.log('It saved in the database. 👍'.blue);
+            }
+          }
+        );
+    }
+  });
   //req.methodと一致なしの時は404errorを返す
   router.use((req, res) => {
     res.status(404).json({

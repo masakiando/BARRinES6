@@ -31,6 +31,6 @@ export function logout() {
   return dispatch => {
     localStorage.removeItem('jwtToken');
     setAuthenticationToken(false);//login時、Request headersに追加したtokenを削除する
-    dispatch(setCurrentUser({}));
+    dispatch(setCurrentUser({}));// storeのuser stateを空にする
   };
 }

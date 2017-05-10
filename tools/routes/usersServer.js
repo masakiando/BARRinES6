@@ -16,7 +16,6 @@ function validateInput(data) {
   // Server Side validations
   let { errors, isValid } = commonValidations(data);
 
-  //db after validations(1) 一意生validations
   return User.query({
     where: { email: data.email },
     orWhere: { username: data.username }
@@ -69,7 +68,6 @@ router.post('/', (req, res) => {
     .then( ({ errors, isValid }) => {
     // db
       if(isValid) {
-          // pass暗号化
         const { username,
                  timezone,
                  email,

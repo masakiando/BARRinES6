@@ -10,12 +10,12 @@ class GamesPage extends React.Component {
     super(props, context);
 
     this.redirectToAddGamePage = this.redirectToAddGamePage.bind(this);
-    this.deleteCourse = this.deleteCourse.bind(this);
+    this.deleteGame = this.deleteGame.bind(this);
   }
 
-  deleteCourse(courseId) {
+  deleteGame(gameId) {
     // this.setState({saving: true});
-    // this.props.actions.deleteCourse(courseId)
+    this.props.actions.deleteGame(gameId)
     // .then(() => this.redirect());
   } //. ※ bindを忘れない!
 
@@ -36,7 +36,7 @@ class GamesPage extends React.Component {
           onClick={this.redirectToAddGamePage}/>
         <GamesList
           games={games}
-          onDelete={this.deleteCourse}
+          onDelete={this.deleteGame}
         />
       </div>
     );

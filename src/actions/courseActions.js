@@ -15,13 +15,20 @@ export function updateCourseSuccess(course) {
   return {type: types.UPDATE_COURSE_SUCCESS, course};
 }
 
+export function deleteCourseSuccess(courses) {
+  debugger;
+  return {type: types.DELETE_COURSE_SUCCESS, courses};
+}
+
 export function loadCourses() {
   debugger;
   return function(dispatch) {
     dispatch(beginAjaxCall());
-    return courseApi.getAllCourses().then(courses => {
+    return courseApi.getAllCourses()
+    .then(courses => {
       dispatch(loadCoursesSuccess(courses));
     }).catch(error => {
+      dispatch(ajaxCallError(error));
       throw(error);
     });
   };
@@ -51,9 +58,4 @@ export function deleteCourse(courseId) {
       throw(error);
     });
   };
-}
-
-export function deleteCourseSuccess(courses) {
-  debugger;
-  return {type: types.DELETE_COURSE_SUCCESS, courses};
 }
