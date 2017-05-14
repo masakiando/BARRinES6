@@ -1,15 +1,21 @@
 import React, { PropTypes } from 'react';
 import GameCard from './GameCard';
 
-const GamesList = ({
-  games, onDelete
-}) => {
+const GamesList = ({ games, onDelete }) => {
   const emptyMassage = (
     <p>There are no games yet in your collection.</p>
   );
 
+  let containerStyle = {
+    display: "grid",
+    gridTemplateColumns:
+      "repeat(auto-fill, minmax(250px, 1fr))",
+    gridGap: "1rem",
+    justifyContent: "center"
+  };
+
   const gamesList = (
-       <div className="ui four cards">
+       <div style={containerStyle}>
          {games.map(game =>
            <GameCard
              game={game}

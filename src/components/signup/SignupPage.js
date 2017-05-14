@@ -52,14 +52,15 @@ class SignupPage extends React.Component {
     debugger;
     const field = event.target.name;
     const val = event.target.value;
+    let errors = this.state.errors;
+    let inValid = this.state.inValid;
+    let newinValid;
+
     if (val !== '') {
       this.props.signupActions.isUserExists(val).then(res => {
-        let errors = this.state.errors;
-        let inValid = this.state.inValid;
-        let newinValid;
-
-        if (res.data.user) {
+        if (res.data.errors) {
           errors[field] = 'There is user with such ' + field;
+          console.log(res);
           newinValid = true;
         } else {
           errors[field] = '';
@@ -69,7 +70,13 @@ class SignupPage extends React.Component {
         this.setState({inValid: inValid});
         this.setState({ errors });
       });
+    } else {
+      errors[field] = '';
+      newinValid = false;
     }
+    inValid[field] = newinValid;
+    this.setState({inValid: inValid});
+    this.setState({ errors });
   }
 
   onSignup(event) {

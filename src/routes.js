@@ -12,6 +12,7 @@ import ManageWorkshopEventPage from './components/workshop/ManageWorkshopEventPa
 import GamesPage from './components/game/GamesPage';
 import ManageGamePage from './components/game/ManageGamePage';
 import CanvasPage from './components/canvas/CanvasPage';
+import BootstrapPage from './components/bootstrap/BootstrapPage';
 //WorkshopsPageはrequireAuthを通らないと表示しない
 import requireAuth from './utils/requireAuth';
 
@@ -33,5 +34,6 @@ export default (
     <Route path="/game" component={ManageGamePage} />
     <Route path="/game/:id" component={ManageGamePage} />
     <Route path="/canvas" component={CanvasPage} />
+    <Route path="/bootstrap" component={BootstrapPage} />
 </Route>
 );

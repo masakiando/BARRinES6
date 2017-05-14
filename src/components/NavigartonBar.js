@@ -45,7 +45,7 @@ class NavigationBar extends React.Component {
             <Link to="/" className="navbar-brand">Pluralsight</Link>
           </div>
 
-          <div className="collapse navbar-collapse">
+          <div className="navbar-collapse">
             {isAuthenticated ? userLinks : guestLinks}
           </div>
         </div>

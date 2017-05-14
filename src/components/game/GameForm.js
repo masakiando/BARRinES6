@@ -57,6 +57,7 @@ const GameForm = ({
         value={game.cover}
         onChange={onChange}
         error={errors.cover}/>
+
       <div>
         <input
           type="submit"
@@ -66,16 +67,16 @@ const GameForm = ({
           onClick={onSave}/>
       </div>
 
-        {game.cover !== '' &&
-          <div className="field" style={cardStyle}>
-            <img
-              src={game.cover}
-              alt="cover"
-              className="ui small bordered image"
-              style={imgStyle}
-              />
-            <p style={labelStyle}>{game.title}</p>
-          </div>
+      {game.cover !== '' &&
+      <div className="field" style={cardStyle}>
+        <img
+          src={game.cover}
+          alt="cover"
+          className="ui small bordered image"
+          style={imgStyle}
+          />
+        <p style={labelStyle}>{game.title}</p>
+      </div>
         }
     </form>
   );

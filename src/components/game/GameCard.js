@@ -5,13 +5,12 @@ const GameCard = ({
   game, onDelete
   }) => {
     let cardStyle = {
-      height: 250,
-      width: "45%",
-      padding: 0,
+      height: 225,
+      width: "100%",
+      padding: "0 0 2.5em",
       margin: 20,
       border: 10,
-      borderRadius: "0 0 5px 5px",
-      display: "inline-block",
+      borderRadius: 5,
       backgroundColor: "#FFF",
       WebkitFilter: "drop-shadow(0px 0px 5px #666)",
       filter: "drop-shadow(0px 0px 5px #666)"
@@ -27,23 +26,32 @@ const GameCard = ({
     let labelStyle = {
       fontFamily: "sans-serif",
       fontWeight: "bold",
-      padding: 7,
-      margin: 0,
+      padding: "0 0 0.5em 0.5em",
       borderRadius: "0 0 5px 5px",
       backgroundColor: "#FFF"
     };
+    let buttonStyle = {
+      margin: "0 0 0.2em 0.2em"
+    };
     const handleClick = (event) => {
-      debugger;
       event.preventDefault();
       onDelete(game._id);
     };
     return (
-      <div className="ui card" style={cardStyle}>
+      <div style={cardStyle}>
         <img src={game.cover} alt="Game Cover" style={imgStyle} />
         <div className="content" style={labelStyle}>
-          <div className="header" style={labelStyle}>{game.title}</div>
-          <Link to={`/game/${game._id}`} className="btn btn-primary">Edit</Link>
-          <div className="btn btn-primary" onClick={handleClick}>Delete</div>
+          <p>{game.title}</p>
+          <Link
+            to={`/game/${game._id}`}
+            className="btn btn-primary"
+            style={buttonStyle}>Edit
+          </Link>
+          <div
+            onClick={handleClick}
+            className="btn btn-primary"
+            style={buttonStyle}>Delete
+          </div>
         </div>
       </div>
     );

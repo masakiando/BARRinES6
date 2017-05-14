@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import FlashMessagesRow from './FlashMessagesRow';
 import { deleteFlashMessage } from '../../actions/flashMessagesActions';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import '../../styles/transition.css';
 
 class FlashMessagesList extends React.Component {
   constructor(props, context) {
@@ -19,7 +21,12 @@ class FlashMessagesList extends React.Component {
     );
     debugger;
     return (
-      <div>{message}</div>
+      <ReactCSSTransitionGroup
+        transitionName = "example"
+        transitionEnterTimeout = {500}
+        transitionLeaveTimeout = {500}>
+      {message}
+      </ReactCSSTransitionGroup>
     );
   }
 }

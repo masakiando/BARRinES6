@@ -52,12 +52,20 @@ function validateInput(data) {
 
 // 一意生validations onBlur
 router.get('/:identifier', (req, res) => {
+  let errors = false;
+
   User.query({
     select: [ 'username', 'email' ],
     where: { email: req.params.identifier },
     orWhere: { username: req.params.identifier }
   }).fetch().then(user => {
-    res.json({ user });
+    if (user) {
+      res.json({ errors: true } );
+      console.log(errors);
+    } else {
+      res.json({ errors: false } );
+      console.log({errors});
+    }
   });
 });
 

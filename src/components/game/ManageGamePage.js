@@ -33,8 +33,8 @@ export class ManageGamePage extends React.Component {
 
   updateGameState(event) {
     debugger;
-    const field = event.target.name;
     let game = this.state.game;
+    const field = event.target.name;
     game[field] = event.target.value;
     return this.setState({game: game});
   }
@@ -77,20 +77,14 @@ export class ManageGamePage extends React.Component {
     }
     debugger;
     this.setState({saving: true});
-    this.props.actions.saveGame(this.state.game)
-     .then(
-        () => this.redirect()
-        .catch( err =>  {
-          err.response.json(),
+    this.props.actions.saveGame(this.state.game).then(
+      () => this.redirect(), //{}
+      (err) => err.response.json().then( //err任意
+        ({errors}) => { //{errors}評価式
+          debugger;
           toastr.error(err);
-        }
-       )
-     .then(
-       ( {errors} ) => { //{errors}評価式
-       this.setState({
-         errors, saving: false
-       }); //{errors}評価式
-      })
+          this.setState({errors, saving: false});
+       })
     );
   }
 

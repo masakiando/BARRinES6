@@ -50,7 +50,7 @@ FlashMessagesRow.propTypes = {
 
 
 FlashMessagesRow.defaultProps = {
-  timeout: 5000
+  timeout: 8000
 };
 
 export default FlashMessagesRow;
