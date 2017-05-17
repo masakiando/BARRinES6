@@ -32,8 +32,8 @@ const CourseListRow = ({
 
 CourseListRow.propTypes = {
   course: PropTypes.object.isRequired,
-  onDelete: React.PropTypes.func.isRequired,
-  saving: React.PropTypes.bool
+  onDelete: PropTypes.func.isRequired,
+  saving: PropTypes.bool
 };
 
 export default CourseListRow;

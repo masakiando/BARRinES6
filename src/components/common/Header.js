@@ -19,6 +19,8 @@ const Header = ({loading}) => {
       <Link to="/canvas" className="box-link" activeClassName="active">Canvas</Link>
       {" | "}
       <Link to="/bootstrap" className="box-link" activeClassName="active">Bootstrap</Link>
+      {" | "}
+      <Link to="/motion" className="box-link" activeClassName="active">Motion</Link>
       <br />
       {loading &&<LoadingDots interval={100} dots={20}/>}
       {!loading &&<span>&nbsp;</span>}

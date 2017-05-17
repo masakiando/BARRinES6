@@ -20,6 +20,10 @@ export function deleteGameSuccess(gameId) {
   return {type: types.DELETE_GAME_SUCCESS, gameId};
 }
 
+const serahGamesSuccess = (games) => {
+  return {type: types.SERAH_GAMES_SUCCESS, games};
+}
+
 export function loadGames() {
   debugger;
   return function (dispatch) {
@@ -29,6 +33,17 @@ export function loadGames() {
         dispatch(loadGamesSuccess(games));
     }).catch(error => {
       throw(error);
+    });
+  };
+}
+
+export function searchGames(identifier) {
+  debugger;
+  return function (dispatch) {
+    fetch(`/api/games/${identifier}`)
+      .then(res => res.json())
+      .then(games => {
+        dispatch(serahGamesSuccess(games));
     });
   };
 }
@@ -61,7 +76,7 @@ export function saveGame(game) {
         method: 'put',
         body: JSON.stringify(game),
         headers: {'Content-Type': 'application/json'}
-      }).then(handleResponse).then(game => { //取り出した名をgameとする
+      }).then(game => { //取り出した名をgameとする
         dispatch(updateGameSuccess(game));
       });
     }

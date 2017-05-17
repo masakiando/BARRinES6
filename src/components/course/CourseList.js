@@ -31,8 +31,8 @@ const CourseList = ({
 
 CourseList.propTypes = {
   courses: PropTypes.array.isRequired,
-  onDelete: React.PropTypes.func.isRequired,
-  saving: React.PropTypes.bool
+  onDelete: PropTypes.func.isRequired,
+  saving: PropTypes.bool
 };
 
 export default CourseList;

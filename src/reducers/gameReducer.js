@@ -37,6 +37,10 @@ export default function gameReducer(
         ...state.filter(a => a._id !== action.gameId)
       ];
 
+    case types.SERAH_GAMES_SUCCESS:
+      debugger;
+      return action.games;
+
     default: return state;
   }
 }

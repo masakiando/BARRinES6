@@ -59,7 +59,7 @@ const GameCard = ({
 
 GameCard.propTypes = {
   game: PropTypes.object.isRequired,
-  onDelete: React.PropTypes.func.isRequired
+  onDelete: PropTypes.func.isRequired
 };
 
 export default GameCard;
