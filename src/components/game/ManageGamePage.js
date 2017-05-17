@@ -56,14 +56,6 @@ export class ManageGamePage extends React.Component {
      }
      this.setState({errors: errors});
      return formIsValid;
-     // FormIsValid errorsない時はtrueを返す
-     // FormIsValid errorsある時はfalseを返す
-
-    // formValidにtrue, falseを直接代入する方法以外のやり方
-    //  const formValid = Object.keys(errors).length === 0
-    //  return formIsValid;
-    // FormIsValid errorsない時はtrueを返す
-    // FormIsValid errorsある時はfalseを返す
   }
 
   saveGame(event) {
@@ -71,16 +63,16 @@ export class ManageGamePage extends React.Component {
     event.preventDefault();
 
     if(!this.GameFormIsValid()) {
-      // FormIsValidがfalseなら条件一致し
-      // save処理はここまでで処理を終了する
       return;
     }
     debugger;
     this.setState({saving: true});
-    this.props.actions.saveGame(this.state.game).then(
-      () => this.redirect(), //{}
-      (err) => err.response.json().then( //err任意
-        ({errors}) => { //{errors}評価式
+    this.props.actions.saveGame(this.state.game)
+    .then(
+      () => this.redirect(),
+      (err) => err.res.json()
+      .then(
+        ({errors}) => {
           debugger;
           toastr.error(err);
           this.setState({errors, saving: false});

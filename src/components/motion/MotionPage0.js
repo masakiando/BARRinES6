@@ -1,8 +1,9 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import {Motion, spring} from 'react-motion';
-import MenuButton from './MenuButton';
-import Menu from './Menu';
-import PageContent from './PageContent';
+import MenuOpenButton from './MenuOpenButton';
+import MenuPage from './MenuPage';
+import TopContentPage from './TopContentPage';
 
 class MotionPage extends React.Component {
   constructor(props) {
@@ -11,6 +12,15 @@ class MotionPage extends React.Component {
     this.state = {
       panelOpen: false
     };
+    this.menuClose = this.menuClose.bind(this);
+    this.MenuPageOpen = this.MenuPageOpen.bind(this);
+  }
+
+  MenuPageOpen() {
+    this.setState({panelOpen: !this.state.panelOpen});
+  }
+  menuClose() {
+    this.setState({panelOpen: !this.state.panelOpen});
   }
 
   render() {
@@ -18,22 +28,16 @@ class MotionPage extends React.Component {
 
     return (
       <div>
-        <MenuButton
-          handleMouseDown={
-            () => this.setState({
-              panelOpen: !panelOpen
-            })
-          }
+        <MenuOpenButton
+          MenuPageOpen={this.MenuPageOpen}
         />
-        <Menu
+      {panelOpen &&
+        <MenuPage
           panelOpen={this.state}
-          handleMouseDown={
-            () => this.setState({
-              panelOpen: false
-            })
-          }
+          divDown={this.menuClose}
         />
-        <PageContent/>
+      }
+      <TopContentPage/>
       </div>
     );
   }

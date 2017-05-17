@@ -29,8 +29,8 @@ class GamesPage extends React.Component {
   onSearch(event) {
     event.preventDefault();
     alert(`Search ${this.state.identifier}`);
-    this.props.actions.searchGames(this.state.identifier)
-    //then error
+    this.props.actions.searchGames(this.state.identifier);
+    this.setState({identifier: ''});
   }
 
   redirect() {

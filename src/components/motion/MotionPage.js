@@ -1,6 +1,7 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import {Motion, spring, presets} from 'react-motion';
-// import MenuButton from './MenuButton';
+// import MenuButton from './MenuOpenButton';
 // import Menu from './Menu';
 // import PageContent from './PageContent';
 //

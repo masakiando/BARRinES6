@@ -54,8 +54,8 @@ mongodb.MongoClient.connect(dbUrl, function(err, db) {
     }, delay);
   });
 
-  router.get('/:identifier',
-    function (req, res) {
+  router.get('/:identifier', (req, res) => {
+    setTimeout(() => {
       if(err) {
         console.log('I was not connected to the database with get method.'.red);
         console.log(err);
@@ -65,19 +65,20 @@ mongodb.MongoClient.connect(dbUrl, function(err, db) {
         db.collection('games')
         .find({
           title: { $regex: req.params.identifier + '*', $options: 'i' }
-        }).toArray( (err, data) => {
+        }).toArray( (err, games) => {
           if(err) return console.log('find error:', err); //serah fail
-          if(!data.length) {
-            return res.status(500).json({ // not data
-                errors: { msg: "No results" }
+          if(!games.length) {
+            return res.status(500).json({ // not games
+                errors: { msg: "No games" }
               });
           } else {
-            res.json(data);
-            console.log(data);
+            res.json(games);
+            console.log(games);
           }
         });
       }
-    });
+    }, delay);
+  });
 
 router.post('/', (req, res) => {
   if(err) {
@@ -109,26 +110,6 @@ router.post('/', (req, res) => {
     }
   }
 });
-
-// router.post('/', (req, res) => {
-//   console.log('acth start...'.white);
-//   console.log(req.body);
-
-// app.post('', (req, res) => {
-//   const { errors, isValid } = validate(req.body);
-//   if (isValid) {
-//     const { title, cover } = req.body;
-//     db.collection('games').insert({ title, cover }, (err, result) => {
-//       if (err) {
-//         res.status(500).json({ errors: { global: "Something went wrong" }});
-//       } else {
-//         res.json({ game: result.ops[0] });
-//       }
-//     });
-//   } else {
-//     res.status(400).json({ errors });
-//   }
-// });
 
   router.put('/:_id', (req, res) => {
     if(err) {
