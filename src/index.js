@@ -2,7 +2,7 @@
 import 'babel-polyfill'; //babelの変換において、古いブラウザでもある程度動かす
 import React from 'react';
 import { render } from 'react-dom';
-// configureStoreは
+// configureStoreはdispatchでアクションを実行してステートを更新する
 import configureStore from './store/configureStore';
 import {Provider} from 'react-redux';
 import { Router, browserHistory } from 'react-router';
@@ -10,6 +10,11 @@ import routes from './routes';
 import {loadCourses} from './actions/courseActions';
 import {loadAuthors} from './actions/authorActions';
 import {loadGames} from './actions/gameActions';
+import {loadMenus} from './actions/starbucksAcions';
+import {loadPlayers} from './actions/playerAcions';
+import {loadTrips} from './actions/tripActions';
+
+
 import setAuthenticationToken from './utils/setAuthenticationToken';
 import jwt from 'jsonwebtoken';
 import { setCurrentUser } from './actions/authActions';
@@ -22,6 +27,9 @@ const store = configureStore();
 store.dispatch(loadCourses());
 store.dispatch(loadAuthors());
 store.dispatch(loadGames());
+store.dispatch(loadMenus());
+store.dispatch(loadPlayers());
+store.dispatch(loadTrips());
 
 if (localStorage.jwtToken) { //リロード時localStorageにjwtTokenあれば
   setAuthenticationToken(
@@ -33,8 +41,10 @@ if (localStorage.jwtToken) { //リロード時localStorageにjwtTokenあれば
 
 render(
     <Provider store={store}>
-      <Router history={browserHistory}
-            routes={routes} />
+      <Router
+        history={browserHistory}
+        routes={routes}
+      />
     </Provider>,
   document.getElementById('app')
 );

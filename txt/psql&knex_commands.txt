@@ -1,0 +1,68 @@
+#Description
+GL:Generalization
+SE:Specific example
+OP:Specific example with Option
+OF:Output file
+!!:Use with caution
+*Change of chapter*
+~Change section~
+
+#Install postgresql on pc
+GL:brew install postgresql
+
+#Create database in postgresql
+createdb ArbitraryDatabaseName
+
+#Install knex on project
+GL:npm install --save knex
+
+#Install knex globally
+GL:npm install -g knex
+
+#Create a database configuration file (knexfile.js) on project
+GL:knex init
+OF:./knexfile.js
+
+#Install pg on project
+GL:npm install --save pg
+
+#Create table design file of database
+GL:knex migrate:make ArbitraryMigrateFileName
+OF:./migrations/date_ArbitraryMigrateFileName.js
+
+#Create a table in database
+GL:knex migrate:latest
+OP:knex migrate:latest --env production
+
+!!Use with caution
+#When rollback is executed, export.down of the migration file executed on the latest latest is called and the table is dropped.
+GL:knex migrate:rollback
+
+#Install bookshelf on project
+GL:npm install --save bookshelf
+
+#by myself bookshelf.js file create to Arbitrary place
+#Bookcase ORM package
+
+#psql database sign in
+GL:$psql databaseName
+SE:$psql Building_Applications_with_React_and_Redux_in_ES6_Master
+
+#Expanded display is used automatically.
+GL:\x auto
+
+#Select the table of the signed-in database
+GL:select * from tableName;
+SE:select * from users;
+
+#psql database logout
+\q
+
+~Create test data~
+#Create a seed file
+GL:knex seed:make seedFileName
+SP:knex seed:make test_users
+OF:./seeds/test_users
+
+#Store the contents of the seed file in the database
+GL:knex seed:run

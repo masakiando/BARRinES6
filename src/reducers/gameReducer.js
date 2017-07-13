@@ -6,14 +6,14 @@ export default function gameReducer(
 
   switch (action.type) {
 
-    case types.LOAD_GAMES_SUCCESS:
-      return action.games;
-
     case types.CREATE_GAME_SUCCESS:
       return [
         ...state,
         action.game
       ];
+
+    case types.LOAD_GAMES_SUCCESS:
+      return action.games;
 
     // update(1)更新日順
     // case types.UPDATE_GAME_SUCCESS:

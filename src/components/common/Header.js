@@ -21,6 +21,15 @@ const Header = ({loading}) => {
       <Link to="/bootstrap" className="box-link" activeClassName="active">Bootstrap</Link>
       {" | "}
       <Link to="/motion" className="box-link" activeClassName="active">Motion</Link>
+      {" | "}
+      <Link to="/starbucksMenus" className="box-link" activeClassName="active">Starbucks</Link>
+      {" | "}
+      <Link to="/players" className="box-link" activeClassName="active">Players</Link>
+      {" | "}
+      <Link to="/trips" className="box-link" activeClassName="active">Trips</Link>
+      {" | "}
+      <Link to="/CorrelationCoefficient" className="box-link" activeClassName="active">CorrelationCoefficient</Link>
+
       <br />
       {loading &&<LoadingDots interval={100} dots={20}/>}
       {!loading &&<span>&nbsp;</span>}

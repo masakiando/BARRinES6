@@ -27,10 +27,12 @@ export default function courseReducer(
         ...state.filter(course => course.id !== action.course.id),
         Object.assign({}, action.course)
       ];
-
+    //missing id use!!!!
     case types.DELETE_COURSE_SUCCESS:
       debugger;
-      return action.courses;
+      return [ ...state,
+        Object.assgin({}, action.courses)
+      ];
       default:
         return state;
   }

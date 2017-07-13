@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
-import GamesList from './GamesList';
+import GameList from './GameList';
 import { browserHistory } from 'react-router';
 import * as gameActions from '../../actions/gameActions';
 import toastr from 'toastr';
@@ -10,8 +10,9 @@ class GamesPage extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      identifier: ''
-    }
+      identifier: '',
+      errors: {}
+    };
 
     this.updateIdentifierState = this.updateIdentifierState.bind(this);
     this.onSearch = this.onSearch.bind(this);
@@ -28,20 +29,32 @@ class GamesPage extends React.Component {
 
   onSearch(event) {
     event.preventDefault();
-    alert(`Search ${this.state.identifier}`);
-    this.props.actions.searchGames(this.state.identifier);
-    this.setState({identifier: ''});
+    const { actions } = this.props;
+    const { identifier } = this.state;
+
+    alert(`Search ${identifier}`);
+    actions.searchGames(identifier)
+    .then(
+      () => this.redirect(),
+      (err) => err.res.json()
+      .then(
+        ({errors}) => {
+          debugger;
+          toastr.error(err);
+          this.setState({errors});
+       })
+    );
   }
 
   redirect() {
     debugger;
-    toastr.success('Search saved');
+    toastr.success('Search');
     this.setState({identifier: ''});
   }
 
   deleteGame(gameId) {
     // this.setState({saving: true});
-    this.props.actions.deleteGame(gameId)
+    this.props.actions.deleteGame(gameId);
     // .then(() => this.redirect());
   } //. ※ bindを忘れない!
 
@@ -80,7 +93,7 @@ class GamesPage extends React.Component {
           </div>
         </form>
 
-        <GamesList
+        <GameList
           games={games}
           onDelete={this.deleteGame}
         />
@@ -103,7 +116,7 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(gameActions, dispatch)
-  }
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GamesPage);

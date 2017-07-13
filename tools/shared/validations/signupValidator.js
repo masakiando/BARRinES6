@@ -37,7 +37,7 @@ export default function commonValidations(data) {
 
   return {
     errors,
-    isValid: isEmpty(errors) //errorsがあったらfalseを返す
+    isValid: isEmpty(errors) //errors null true
   };
 }
 

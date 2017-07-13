@@ -28,7 +28,8 @@ const CourseForm = ({
         defaultOption="Select Author"
         options={allAuthors}
         onChange={onChange}
-        error={errors.authorId}/>
+        error={errors.authorId}
+      />
 
       <TextInput
         name="category"

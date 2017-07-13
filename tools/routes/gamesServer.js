@@ -28,7 +28,7 @@ function validateInput(data) {
    }
    return {
      errors,
-     isValid: isEmpty(errors)
+     isValid: isEmpty(errors) //nullであることを確認する
     //  isValid
    };
 }
@@ -38,16 +38,16 @@ mongodb.MongoClient.connect(dbUrl, function(err, db) {
   router.get('/', (req, res) => {
     setTimeout(() => {
       if(err) {
-        console.log('I was not connected to the database with get method. đŠđŠđŠ'.red);
+        console.log('I was not connected to the database with get method.'.red);
         console.log(err);
       } else {
-        console.log('Connect to the database with get method đđđ'.blue);
+        console.log('Connect to the database with get method'.blue);
         db.collection('games').find({}).toArray( (err, games) => {
           if(err) {
             throw(err);
           } else {
-            console.log("sucessfuly inserted");
             res.json(games);
+            console.log("sucessfuly inserted");
           }
         });
       }
@@ -64,13 +64,13 @@ mongodb.MongoClient.connect(dbUrl, function(err, db) {
         console.log(req.params.identifier);
         db.collection('games')
         .find({
-          title: { $regex: req.params.identifier + '*', $options: 'i' }
+          title: {
+            $regex: req.params.identifier + '*',
+            $options: 'i'
+          }
         }).toArray( (err, games) => {
-          if(err) return console.log('find error:', err); //serah fail
-          if(!games.length) {
-            return res.status(500).json({ // not games
-                errors: { msg: "No games" }
-              });
+          if(err) {
+            throw(err);
           } else {
             res.json(games);
             console.log(games);
@@ -92,7 +92,7 @@ router.post('/', (req, res) => {
 
       const { title, cover } = req.body;
       console.log({ title, cover });
-      // db gamesăăźăăŤă¸save
+      // db game save
       db.collection('games').insert({ title, cover }, (err, result) => {
         if(err) { //not saveing
           res.status(500).json({
@@ -120,7 +120,10 @@ router.post('/', (req, res) => {
       const { errors, isValid } = validateInput(req.body);
 
       if (isValid) {
-        const { title, cover } = req.body;
+        const {
+          title,
+          cover
+        } = req.body;
         db.collection('games').findOneAndUpdate(
           { _id: new mongodb.ObjectId(req.params._id) },
           { $set: { title, cover } },
@@ -146,7 +149,7 @@ router.post('/', (req, res) => {
     }
   });
 
-  router.delete('/:_id', (req, res) => {
+  router.delete('/:_id', (req, res) => { // start delete
     if(err) {
       console.log('I was not connected to the database with delete method. đŠ'.red);
       console.log(err);
@@ -168,8 +171,9 @@ router.post('/', (req, res) => {
           }
         );
     }
-  });
-  //req.methodă¨ä¸č´ăŞăăŽćăŻ404errorăčżă
+  }); // end delete
+
+  //req.method
   router.use((req, res) => {
     res.status(404).json({
       errors: {

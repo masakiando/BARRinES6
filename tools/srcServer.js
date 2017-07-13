@@ -12,7 +12,10 @@ import users from './routes/usersServer';
 import acth from './routes/acthServer';
 import workshopevent from './routes/workshopeventServer';
 import games from './routes/gamesServer';
-
+import starbucks from './routes/starbucksServer';
+import players from './routes/playersServer';
+import trips from './routes/tripServer';
+import webgles from './routes/webglServer';
 /* eslint-disable no-console */
 
 const port = 3000;
@@ -28,7 +31,10 @@ app.use('/api/users', users); //expressでserverg立ち上げ
 app.use('/api/acth', acth); //expressでserverg立ち上げ
 app.use('/api/workshopevent', workshopevent); //expressでserverg立ち上げ
 app.use('/api/games', games);
-
+app.use('/api/starbucks', starbucks);
+app.use('/api/players', players);
+app.use('/api/trips', trips);
+app.use('/api/webgles', webgles);
 //指定されたマウントミドルウェア指定されたパスに関数や機能を：要求されたパスのベースが一致したときに、ミドルウェア機能が実行されますpath。
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
@@ -38,11 +44,12 @@ app.use(require('webpack-dev-middleware')(compiler, {
 app.use(require('webpack-hot-middleware')(compiler));
 
 //ファイルをオクテットストリームとして送信します。
-// express起動でsendFileする
+//sendFileする
 app.get('*', function(req, res) {
   res.sendFile(path.join( __dirname, '../src/index.html'));
 });
-// sendしたファイルをopenする
+// express listen 起動
+// open => req => EXPESS => get* => send => file, db => OK!!!!
 app.listen(port, function(err) {
   if (err) {
     console.log(err);
@@ -50,4 +57,3 @@ app.listen(port, function(err) {
     open(`http://localhost:${port}`);
   }
 });
-// open => req => EXPESS => get* => send => file, db => OK!!!!

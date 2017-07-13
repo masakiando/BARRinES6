@@ -4,9 +4,7 @@ import {bindActionCreators} from 'redux';
 import GameForm from './GameForm';
 // import { Redirect } from 'react-router-dom';
 import * as gameActions from '../../actions/gameActions';
-
 import toastr from 'toastr';
-
 
 export class ManageGamePage extends React.Component {
   constructor(props, context) {
@@ -23,7 +21,6 @@ export class ManageGamePage extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    debugger;
     if (this.props.game.id != nextProps.game._id) {
       this.setState({
         game: Object.assign({}, nextProps.game)
@@ -32,7 +29,6 @@ export class ManageGamePage extends React.Component {
   }
 
   updateGameState(event) {
-    debugger;
     let game = this.state.game;
     const field = event.target.name;
     game[field] = event.target.value;
@@ -104,7 +100,6 @@ export class ManageGamePage extends React.Component {
 
 ManageGamePage.propTypes = {
   game: PropTypes.object.isRequired,
-
   actions: PropTypes.object.isRequired
 };
 
@@ -113,37 +108,35 @@ ManageGamePage.contextTypes = {
 };
 
 function getGameById(games, id) {
-  debugger;
   const game = games.filter(game => game._id == id);
-  console.log(game);
   if (game) return game[0];
   return null;
 }
 
 function mapStateToProps(state, ownProps) {
-  debugger;
   const gameId = ownProps.params.id;
 
   let game = {
-                id: '',
-                title: '',
-                cover: ''
-              };
-
+    id: '',
+    title: '',
+    cover: ''
+  };
+  debugger;
   if (gameId && state.games.length > 0) {
     game = getGameById(state.games, gameId);
   }
-  debugger;
   return {
     game: game
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  debugger;
   return {
     actions: bindActionCreators(gameActions, dispatch)
   };
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(ManageGamePage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ManageGamePage);

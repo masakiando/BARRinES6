@@ -2,7 +2,8 @@ import React, {PropTypes} from 'react';
 import CourseListRow from './CourseListRow';
 
 const CourseList = ({
-  courses, onDelete, saving}) => {
+  courses, onDelete, saving
+}) => {
   return (
     <table className="table">
       <thead>

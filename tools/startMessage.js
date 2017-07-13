@@ -10,6 +10,6 @@ fs.readFile('./src/index.html', 'utf8', (err, data) => {
     throw err;
   } else {
     console.log(data);
-    console.log('successfully deleted ./src/index.html 😏😏😏'.blue);
+    console.log('successfully deleted ./src/index.html 😏😏😏?�� 🌮 🐶 💪 💩'.blue);
   }
 });

@@ -5,16 +5,20 @@ import ajaxCallsInProgress from './ajaxStatusReducer';
 import flashMessages from './flashMessagesReducer';
 import authentication from './authenticationReducer';
 import games from './gameReducer';
+import menus from './starbucksReducer';
+import players from './playerReducer';
+import trips from './tripReducer';
 
-//combineReducers ruduxはactionの発行を監視する
-//combineがtype: 'CREATE_COURSE'を確認して担当Reducerへ振り分ける
 const rootReducer = combineReducers({
   courses,
   authors,
   ajaxCallsInProgress,
   flashMessages,
   authentication,
-  games
+  games,
+  menus,
+  players,
+  trips
 });
 
 export default rootReducer;

@@ -77,6 +77,7 @@ const SignupForm = ({
         </select>
         {errors.timezone && <div className="alert alert-danger">{errors.timezone}</div>}
       </div>
+
         <div className="form-group">
           <button className="btn btn-primary btn-lg"
                   disabled={isLoading || inValid.username || inValid.email}>

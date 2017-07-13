@@ -111,7 +111,7 @@ class CourseApi {
   // クライアント側のデータはreducerでcoursesをフィルターして
   // courseIdを取り除く方が良い。実際のデータベースではその方が良い
   static deleteCourse(courseId) {
-    debugger;
+
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         const indexOfCourseToDelete = courses.findIndex(course => course.id == courseId);
@@ -120,7 +120,9 @@ class CourseApi {
         resolve(Object.assign([], courses));
       }, delay);
     });
+
   }
+
 }
 
 export default CourseApi;

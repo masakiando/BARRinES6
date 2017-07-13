@@ -28,7 +28,9 @@ export class ManageCoursePage extends React.Component {
     debugger;
     if (this.props.course.id != nextProps.course.id) {
       // Necessary to populate form when existing course is loaded directly.
-      this.setState({course: Object.assign({}, nextProps.course)});
+      this.setState({
+        course: Object.assign({}, nextProps.course)}
+      );
     }
   }
 //
@@ -149,7 +151,8 @@ function mapStateToProps(state, ownProps) {
   //下記がPropになる
   return {
     course: course,
-    authors: authorsFormattedForDropdown(state.authors)
+    authors: authorsFormattedForDropdown(
+      state.authors)
   };
 }
 
@@ -160,4 +163,7 @@ function mapDispatchToProps(dispatch) {
     actions: bindActionCreators(courseActions, dispatch)
   };
 }
-export default connect(mapStateToProps,mapDispatchToProps)(ManageCoursePage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ManageCoursePage);

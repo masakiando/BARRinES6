@@ -12,10 +12,10 @@ class CoursesPage extends React.Component {
   constructor(props, context) {
     super(props, context);
 
- this.state = {
-      errors: {},
+    this.state = {
       saving: false
     };
+
     this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
     this.deleteCourse = this.deleteCourse.bind(this);
   } //.

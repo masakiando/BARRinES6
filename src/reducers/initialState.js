@@ -6,5 +6,8 @@ export default {
     isAuthenticated: false,
     user: {}
   },
-  games: []
+  games: [],
+  menus: [],
+  players: [],
+  trips: []
 };

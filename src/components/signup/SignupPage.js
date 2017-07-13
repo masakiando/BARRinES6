@@ -36,17 +36,6 @@ class SignupPage extends React.Component {
      });
   }
 
-  //cliant Side validate
-  SignupFormIsValid() {
-    let formIsValid = true;
-    const { errors, isValid } = commonValidations(this.state);
-
-    if (!isValid) {
-      this.setState({ errors: errors });
-      formIsValid = true;
-    }
-    return formIsValid;
-  }
   // onBlur 一意生validations
   checkUserExists(event) {
     debugger;
@@ -77,6 +66,18 @@ class SignupPage extends React.Component {
     inValid[field] = newinValid;
     this.setState({inValid: inValid});
     this.setState({ errors });
+  }
+
+  //cliant Side validate
+  SignupFormIsValid() {
+    let formIsValid = true;
+    const { errors, isValid } = commonValidations(this.state);
+
+    if (!isValid) { //errors
+      this.setState({ errors: errors });
+      formIsValid = false;//2017 5/21 true からfales変更
+    }
+    return formIsValid;
   }
 
   onSignup(event) {
