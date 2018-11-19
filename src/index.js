@@ -22,6 +22,7 @@ import { setCurrentUser } from './actions/authActions';
 import './styles/styles.css'; //WebpackもCSSファイルをインポートできます！
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/toastr/build/toastr.min.css';
+// import '../node_modules/design-system-react';
 
 const store = configureStore();
 store.dispatch(loadCourses());

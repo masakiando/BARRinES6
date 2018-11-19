@@ -12,6 +12,7 @@ import isEmpty from 'lodash/isEmpty';
 let router = express.Router();
 console.log('starting usersServer...'.white);
 
+// post onClick用
 function validateInput(data) {
   // Server Side validations
   let { errors, isValid } = commonValidations(data);
@@ -21,7 +22,7 @@ function validateInput(data) {
     orWhere: { username: data.username }
   }).fetch()
   .then(user => {
-      if (user) {
+      if (user) {//karamu ===
         if (user.get('username') === data.username) {
           errors.username = 'There is user with such username'; //このようなユーザー名を持つユーザーがいます
         }
@@ -34,9 +35,12 @@ function validateInput(data) {
         isValid: isEmpty(errors)
     };
   });
-  // //db after validations(2) Promise bluebird
+  //db after validations(2) Promise bluebird
   // return Promise.all([
-  //   User.where({ email: data.email }).fetch().then(user => {
+  //   User.where({
+  //     email: data.email
+  //   }).fetch()
+  //   .then(user => {
   //     if (user) { errors.email = 'There is user with such email'; }
   //   }),
   //   User.where({ username: data.username }).fetch().then(user => {
@@ -50,7 +54,7 @@ function validateInput(data) {
   // });
 }
 
-// 一意生validations onBlur
+// 一意生 validations onBlur Event用
 router.get('/:identifier', (req, res) => {
   let errors = false;
 
@@ -72,10 +76,9 @@ router.get('/:identifier', (req, res) => {
 // user登録
 router.post('/', (req, res) => {
     // Server Side validations & db after validations
-    validateInput(req.body)
-    .then( ({ errors, isValid }) => {
+    validateInput(req.body).then( ({ errors, isValid }) => {
     // db
-      if(isValid) {
+      if(isValid) {//true NO error Go
         const { username,
                  timezone,
                  email,

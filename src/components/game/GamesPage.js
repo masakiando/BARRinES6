@@ -53,6 +53,7 @@ class GamesPage extends React.Component {
   }
 
   deleteGame(gameId) {
+    console.log(gameId);
     // this.setState({saving: true});
     this.props.actions.deleteGame(gameId);
     // .then(() => this.redirect());

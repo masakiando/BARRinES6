@@ -2,6 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Motion, spring} from 'react-motion';
 
+var btnstyle = {
+  color: "red",
+  top: 50,
+  left: 0
+};
+
 const MenuPage = ({
   divDown, panelOpen
 }) => { // a
@@ -9,6 +15,7 @@ const MenuPage = ({
           <div
             onClick={divDown}
             id="flyoutMenu"
+            style={btnstyle}
           >
             <h2><a href="#">Top</a></h2>
             <h2><a href="#">About</a></h2>

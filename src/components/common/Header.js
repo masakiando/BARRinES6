@@ -3,7 +3,6 @@ import { Link, IndexLink } from 'react-router';
 import LoadingDots from './LoadingDots';
 
 const Header = ({loading}) => {
-  debugger;
   return (
     <nav className="nav nav--center">
       <IndexLink to="/" className="box-link" activeClassName="active">Home</IndexLink>
@@ -29,7 +28,10 @@ const Header = ({loading}) => {
       <Link to="/trips" className="box-link" activeClassName="active">Trips</Link>
       {" | "}
       <Link to="/CorrelationCoefficient" className="box-link" activeClassName="active">CorrelationCoefficient</Link>
-
+      {" | "}
+      <Link to="/javeScriptGametopPage" className="box-link" activeClassName="active">javeScriptGametopPage</Link>
+      {" | "}
+      <Link to="/ManageSchoolPage" className="box-link" activeClassName="active">ManageSchoolPage</Link>
       <br />
       {loading &&<LoadingDots interval={100} dots={20}/>}
       {!loading &&<span>&nbsp;</span>}

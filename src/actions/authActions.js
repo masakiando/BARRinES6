@@ -17,10 +17,12 @@ export function login(data) {
       (res) => {                           //成功 処理 １
         const token = res.data.token;       //    処理 １-1-1
         console.log(token);
+        const user_login_event = res.data.user_login_event;
+        console.log(user_login_event);
         localStorage.setItem('jwtToken', token);//処理 １-1-2localStorageに追加
         setAuthenticationToken(token);          //処理 １-1-3Request headersに追加
         console.log(jwt.decode(token)); //node net,dns jwt.signしたtokenをdecodeで元に戻す
-        dispatch(setCurrentUser(jwt.decode(token))); // jwt.signしたtokenをdecodeで元にもどしてstoreのstateとする。
+        dispatch(setCurrentUser(jwt.decode(token))); // dispatch jwt.signしたtokenをdecodeで元にもどしてstoreのstateとする。
       }
     );
   };

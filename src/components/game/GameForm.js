@@ -58,14 +58,13 @@ const GameForm = ({
         onChange={onChange}
         error={errors.cover}/>
 
-      <div>
-        <input
-          type="submit"
-          disabled={saving}
-          value={saving ? 'Save中' : 'Save'}
-          className="btn btn-primary"
-          onClick={onSave}/>
-      </div>
+      <input
+        type="submit"
+        disabled={saving}
+        value={saving ? 'Save...' : 'Save'}
+        className="btn btn-primary"
+        onClick={onSave}/>
+
 
       {game.cover !== '' &&
       <div className="field" style={cardStyle}>

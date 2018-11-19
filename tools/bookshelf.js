@@ -5,6 +5,4 @@ import bookshelf from 'bookshelf';
 // import knexConfing from '../knexfile';
 let knexConfing = require('../knexfile');
 
-export default bookshelf(
-  knex(knexConfing.development)
-);
+export default bookshelf( knex(knexConfing.development) );

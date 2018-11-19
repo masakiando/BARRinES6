@@ -24,7 +24,7 @@ export default function commonValidations(data) {
   }
 
   if (data.password !== data.passwordConfirmation) {
-    errors.passwordConfirmation = 'Passwords must match';
+    errors.passwordConfirmation = 'Passwordsが一致していません。';
   }
 
   if (!data.passwordConfirmation) {

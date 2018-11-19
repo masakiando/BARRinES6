@@ -28,7 +28,7 @@ describe('CourseForm via Enzyme', () => {
 
   it('save button is labeled "Saving..." when saving', () => {
     const wrapper = setup(true);
-    expect(wrapper.find('input').props().value).toBe('Save中');
+    expect(wrapper.find('input').props().value).toBe('Save...');
   });
 
   it('There are three TextInputs', () => {

@@ -23,6 +23,12 @@ import TripsPage from './components/trip/TripsPage';
 import ManageWebglPage from './components/webgl/ManageWebglPage';
 import List from './components/pagination/List';
 import CorrelationCoefficient from './components/CorrelationCoefficient/CorrelationCoefficient';
+import ManageMyComponent from './components/MyComponent/ManageMyComponent';
+import DropDownMenu from './components/material-ui-DropDownMenu/DropDownMenu';
+import javeScriptGametopPage from './components/javeScriptGame/javeScriptGametopPage';
+import ManageSchoolPage from './components/school/ManageSchoolPage';
+import yourFirstComponent from './components/GettingStarted/yourFirstComponent';
+import CardsPage from './components/WorkingWithData/CardsPage';
 
 //WorkshopsPageはrequireAuthを通らないと表示しない
 import requireAuth from './utils/requireAuth';
@@ -56,5 +62,12 @@ export default (
     <Route path ="/webgl" component={ManageWebglPage} />
     <Route path ="/list" component={List} />
     <Route path ="/CorrelationCoefficient" component={CorrelationCoefficient} />
-</Route>
+    <Route path ="/ManageMyComponent" component={ManageMyComponent} />
+    <Route path ="/DropDownMenu" component={DropDownMenu} />
+    <Route path ="/javeScriptGametopPage" component={javeScriptGametopPage} />
+    <Route path ="/ManageSchoolPage" component={ManageSchoolPage} />
+    <Route path ="/yourFirstComponent" component={yourFirstComponent} />
+    <Route path ="/CardsPage" component={CardsPage} />
+    </Route>
+
 );

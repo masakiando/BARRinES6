@@ -33,7 +33,7 @@ describe('CourseForm via React Test Utils',() => {
   it('save button is labeled "Saving..." when saving',() => {
     const { output } = setup(true);
     const submitButton = output.props.children[5];
-    expect(submitButton.props.value).toBe('Save中');
+    expect(submitButton.props.value).toBe('Save...');
   });
 
   it('The label of the first TextInput is Title',

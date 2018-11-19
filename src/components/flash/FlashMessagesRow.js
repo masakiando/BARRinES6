@@ -48,7 +48,6 @@ FlashMessagesRow.propTypes = {
   timeout: PropTypes.number
 };
 
-
 FlashMessagesRow.defaultProps = {
   timeout: 8000
 };

@@ -35,6 +35,8 @@ class NavigationBar extends React.Component {
       <ul className="nav navbar-nav navbar-right">
         <li><Link to="/signup">Sign up</Link></li>
         <li><Link to="/login">Login</Link></li>
+        <li><Link to="/login">Login</Link></li>
+        <li><Link to="/login">Login</Link></li>
       </ul>
     );
     debugger;
@@ -43,6 +45,10 @@ class NavigationBar extends React.Component {
         <div className="container-fluid">
           <div className="navbar-header">
             <Link to="/" className="navbar-brand">Pluralsight</Link>
+              <a href="#">
+                <img src=" http://cdn.dscount.com/images_2016/top/ntop_all02.jpg" alt="dscount"/>
+                <img src=" http://cdn.dscount.com/images_2016/top/btn_dscoupon02.jpg" alt="dscount"/>
+              </a>
           </div>
 
           <div className="navbar-collapse">

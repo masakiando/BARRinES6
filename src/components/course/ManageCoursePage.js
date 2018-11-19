@@ -7,6 +7,7 @@ import {authorsFormattedForDropdown} from '../../selectors/selectors';
 import toastr from 'toastr';
 
 export class ManageCoursePage extends React.Component {
+  //React classのprops,contextを継承する
   constructor(props, context) {
     super(props, context);
 
@@ -15,6 +16,10 @@ export class ManageCoursePage extends React.Component {
       // state初期値にはthis.props.courseを指定する。
       // propsはmapStateToPropsで指定されている。
       course: Object.assign({}, this.props.course),
+      //Reactのlife cycleメソッドによって描画後mapStateToPropsが実行
+      //React classのpropsを使用しcourseオブジェクトをstateにする
+      //React classはprops,contextを継承している
+      //この際propsの検証をreactのPropTypesで実行する
       errors: {},
       saving: false
     };
@@ -29,8 +34,8 @@ export class ManageCoursePage extends React.Component {
     if (this.props.course.id != nextProps.course.id) {
       // Necessary to populate form when existing course is loaded directly.
       this.setState({
-        course: Object.assign({}, nextProps.course)}
-      );
+        course: Object.assign({}, nextProps.course)
+      });
     }
   }
 //
@@ -85,9 +90,13 @@ export class ManageCoursePage extends React.Component {
     debugger;
     this.setState({saving: false});
     toastr.success('Course saved');
+    //React classはprops,contextを継承している
+    //context関数を使用してrouterと接続する
     this.context.router.push('/courses');
   }
   render() { //propTypes, constructor state, bind(this) 検証
+    //React classのpropsを使用しauthorsオブジェクトをプロパティにする
+    //React classはprops,contextを継承している
     return (
       <CourseForm
         onChange={this.updateCourseState}
@@ -161,6 +170,8 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(courseActions, dispatch)
+    //this.props.actions.saveCourse(this.state.course);と書くとreduxのbindActionCreatorsは
+    //store.dispatch(courseActions.saveCourse(this.state.course));
   };
 }
 export default connect(

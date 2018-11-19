@@ -28,7 +28,7 @@ export default function gameReducer(
       debugger;
       return state.map(a => {
         if(a._id === action.game._id) return action.game;
-        return a;
+      return a;
     });
 
     case types.DELETE_GAME_SUCCESS:
